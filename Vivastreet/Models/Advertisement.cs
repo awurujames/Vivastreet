@@ -30,6 +30,9 @@ namespace Vivastreet.Models
         public ICollection<Condition>? Conditions { get; set; }
         public ICollection<Material>? Materials { get; set; }
         public ICollection<SelectAge>? Advertisements { get; set; }
+        public ICollection<Language>? Languages { get; set; }
+        public ICollection<Rate>? Rates { get; set; }
+        public ICollection<ServiceOffered>? ServiceOffereds { get; set; }
 
 
 

@@ -11,6 +11,5 @@ namespace Vivastreet.Models
         [Display(Name = "Local PickUp")]
         [Range(1, int.MaxValue, ErrorMessage = "Pick up rate must be greater than 0")]
         public decimal? LocalPickUp { get; set; }
-        public virtual Advertisement? Advertisement { get; set; }
     }
 }

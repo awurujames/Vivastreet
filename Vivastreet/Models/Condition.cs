@@ -4,6 +4,7 @@ namespace Vivastreet.Models
 {
     public class Condition
     {
+        public int Id { get; set; }
         public string? Perfect { get; set; }
         public string? Good { get; set; }
         public string? Fair { get; set; }

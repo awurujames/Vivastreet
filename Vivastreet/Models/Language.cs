@@ -4,6 +4,7 @@ namespace Vivastreet.Models
 {
     public class Language
     {
+        public int Id { get; set; }
         public bool English { get; set; }
         public bool Italian { get; set; }
         public bool Russian { get; set; }
@@ -13,6 +14,5 @@ namespace Vivastreet.Models
         public bool French { get; set; }
         public bool Portugese { get; set; }
         public bool Other { get; set; }
-        public virtual Advertisement? Advertisement { get; set; }
     }
 }

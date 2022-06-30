@@ -7,7 +7,7 @@ namespace Vivastreet.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(30)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public int? PostCode { get; set; }
         [MaxLength(300)]
         public string? Description { get; set; }
@@ -26,13 +26,10 @@ namespace Vivastreet.Models
 
         [Display(Name = "Classic Advert")]
         public bool ClassicAdvert { get; set; }
-        public virtual Rate? Rate { get; set; }
-        public virtual ServiceOffered? ServiceOffered { get; set; }
-        public virtual Language? Language { get; set; }
         public ICollection<Category>? Categories { get; set; }
         public ICollection<Condition>? Conditions { get; set; }
         public ICollection<Material>? Materials { get; set; }
-        //public ICollection<SelectAge>? Advertisements { get; set; }
+        public ICollection<SelectAge>? Advertisements { get; set; }
 
 
 

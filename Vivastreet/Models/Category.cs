@@ -9,6 +9,6 @@ namespace Vivastreet.Models
         public int DisplayOder { get; set; }
         public int AdvertisementId { get; set; }
         [ForeignKey("AdvertisementId")]
-        public virtual Advertisement Advertisement { get; set; }
+        public virtual Advertisement? Advertisement { get; set; }
     }
 }

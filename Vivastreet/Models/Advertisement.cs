@@ -26,15 +26,25 @@ namespace Vivastreet.Models
 
         [Display(Name = "Classic Advert")]
         public bool ClassicAdvert { get; set; }
-        public ICollection<Category>? Categories { get; set; }
-        public ICollection<Condition>? Conditions { get; set; }
-        public ICollection<Material>? Materials { get; set; }
-        public ICollection<SelectAge>? Advertisements { get; set; }
-        public ICollection<Language>? Languages { get; set; }
+        public bool French { get; set; }
+        public bool Italian { get; set; }
+        public bool Spanish { get; set; }
+        public bool German { get; set; }
+        public bool Chinese { get; set; }
+        public bool Russian { get; set; }
+        public bool Other { get; set; }
+        public bool English { get; set; }
+        public bool Portugese { get; set; }
+        public bool IsDeliveryService { get; set; }
+        public string? DeliveryServiceFee { get; set; }
+        public string? PickUpServiceFee { get; set; }
+        public bool IsPickUpService { get; set; }
+        public bool IsInstallationService { get; set; }
+        public string? InstallationServiceFee { get; set; }
+        public int Age { get; set; }
+        public Category Category { get; set; }
+        public Condition Condition { get; set; }
+        public Material Material { get; set; }
         public ICollection<Rate>? Rates { get; set; }
-        public ICollection<ServiceOffered>? ServiceOffereds { get; set; }
-
-
-
     }
 }

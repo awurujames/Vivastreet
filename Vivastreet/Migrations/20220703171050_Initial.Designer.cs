@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vivastreet.Data;
 
@@ -11,9 +12,10 @@ using Vivastreet.Data;
 namespace Vivastreet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220703171050_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,17 +38,11 @@ namespace Vivastreet.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Chinese")
                         .HasColumnType("bit");
 
                     b.Property<bool>("ClassicAdvert")
                         .HasColumnType("bit");
-
-                    b.Property<int>("ConditionId")
-                        .HasColumnType("int");
 
                     b.Property<string>("DeliveryServiceFee")
                         .HasColumnType("nvarchar(max)");
@@ -85,9 +81,6 @@ namespace Vivastreet.Migrations
                     b.Property<bool>("Italian")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MaterialId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Other")
                         .HasColumnType("bit");
 
@@ -122,10 +115,6 @@ namespace Vivastreet.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ConditionId");
-
                     b.ToTable("Advertisements");
                 });
 
@@ -157,10 +146,16 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementId")
+                        .IsUnique();
 
                     b.ToTable("Conditions");
                 });
@@ -172,6 +167,9 @@ namespace Vivastreet.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Chinese")
                         .HasColumnType("bit");
@@ -202,6 +200,8 @@ namespace Vivastreet.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdvertisementId");
+
                     b.ToTable("Langauges");
                 });
 
@@ -213,6 +213,9 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Durability")
                         .HasColumnType("nvarchar(max)");
 
@@ -223,6 +226,9 @@ namespace Vivastreet.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementId")
+                        .IsUnique();
 
                     b.ToTable("Materials");
                 });
@@ -263,10 +269,15 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementId");
 
                     b.ToTable("selectAges");
                 });
@@ -278,6 +289,9 @@ namespace Vivastreet.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Delivery")
                         .HasColumnType("bit");
@@ -293,34 +307,42 @@ namespace Vivastreet.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AdvertisementId");
+
                     b.ToTable("ServiceOffereds");
                 });
 
-            modelBuilder.Entity("Vivastreet.Models.Advertisement", b =>
+            modelBuilder.Entity("Vivastreet.Models.Condition", b =>
                 {
-                    b.HasOne("Vivastreet.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("Vivastreet.Models.Advertisement", "Advertisement")
+                        .WithOne("Condition")
+                        .HasForeignKey("Vivastreet.Models.Condition", "AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Vivastreet.Models.Condition", "Condition")
+                    b.Navigation("Advertisement");
+                });
+
+            modelBuilder.Entity("Vivastreet.Models.Language", b =>
+                {
+                    b.HasOne("Vivastreet.Models.Advertisement", "Advertisement")
                         .WithMany()
-                        .HasForeignKey("ConditionId")
+                        .HasForeignKey("AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Vivastreet.Models.Material", "Material")
-                        .WithMany()
-                        .HasForeignKey("ConditionId")
+                    b.Navigation("Advertisement");
+                });
+
+            modelBuilder.Entity("Vivastreet.Models.Material", b =>
+                {
+                    b.HasOne("Vivastreet.Models.Advertisement", "Advertisement")
+                        .WithOne("Material")
+                        .HasForeignKey("Vivastreet.Models.Material", "AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-
-                    b.Navigation("Condition");
-
-                    b.Navigation("Material");
+                    b.Navigation("Advertisement");
                 });
 
             modelBuilder.Entity("Vivastreet.Models.Rate", b =>
@@ -334,8 +356,34 @@ namespace Vivastreet.Migrations
                     b.Navigation("Advertisement");
                 });
 
+            modelBuilder.Entity("Vivastreet.Models.SelectAge", b =>
+                {
+                    b.HasOne("Vivastreet.Models.Advertisement", "Advertisement")
+                        .WithMany()
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+                });
+
+            modelBuilder.Entity("Vivastreet.Models.ServiceOffered", b =>
+                {
+                    b.HasOne("Vivastreet.Models.Advertisement", "Advertisement")
+                        .WithMany()
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+                });
+
             modelBuilder.Entity("Vivastreet.Models.Advertisement", b =>
                 {
+                    b.Navigation("Condition");
+
+                    b.Navigation("Material");
+
                     b.Navigation("Rates");
                 });
 #pragma warning restore 612, 618

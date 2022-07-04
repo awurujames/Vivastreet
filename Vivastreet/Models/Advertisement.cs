@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vivastreet.Models
 {
@@ -42,9 +43,15 @@ namespace Vivastreet.Models
         public bool IsInstallationService { get; set; }
         public string? InstallationServiceFee { get; set; }
         public int Age { get; set; }
-        public Category Category { get; set; }
-        public Condition Condition { get; set; }
-        public Material Material { get; set; }
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category? Category { get; set; }
+        public int ConditionId { get; set; }
+        [ForeignKey("ConditionId")]
+        public virtual Condition? Condition { get; set; }
+        public int MaterialId { get; set; }
+        [ForeignKey("ConditionId")]
+        public virtual Material? Material { get; set; }
         public ICollection<Rate>? Rates { get; set; }
     }
 }

@@ -52,19 +52,12 @@ namespace Vivastreet.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DisplayOder = table.Column<int>(type: "int", nullable: false),
-                    AdvertisementId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayOder = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_Advertisements_AdvertisementId",
-                        column: x => x.AdvertisementId,
-                        principalTable: "Advertisements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +77,7 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,7 +105,7 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,7 +127,7 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,7 +149,7 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,7 +169,7 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,14 +192,8 @@ namespace Vivastreet.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_AdvertisementId",
-                table: "Categories",
-                column: "AdvertisementId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Conditions_AdvertisementId",

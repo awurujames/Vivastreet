@@ -8,8 +8,8 @@ namespace Vivastreet.Models
         public string? Name { get; set; }
         public string? Type { get; set; }
         public string? Durability { get; set; }
-        public int AdvertisementId { get; set; }
-        [ForeignKey("AdvertisementId")]
-        public virtual Advertisement? Advertisement { get; set; }
+        //public int AdvertisementId { get; set; }
+        //[ForeignKey("AdvertisementId")]
+        //public virtual Advertisement? Advertisement { get; set; }
     }
 }

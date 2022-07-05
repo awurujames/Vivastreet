@@ -1,12 +1,12 @@
-﻿@model Vivastreet.Models.Condition
+﻿@model Vivastreet.Models.Material
 
-<form method="post" asp-action="Create">
+<form method="post">
+    <input asp-for="Id" hidden/>
     <div class=" border p-3">
 
-        <div asp-validation-summary="ModelOnly" class="text-black text-danger"></div>
 
         <div class="form-group row">
-            <h2 class="text-info pl-3">Add Material</h2>
+            <h2 class="text-info pl-3">Edit Material</h2>
         </div>
 
 
@@ -22,32 +22,32 @@
             </div>
 
         </div>
-        <div class="form-group row pt-3">
+        <div class="form-group row  pt-3">
             <div class="col-4">
-                <label asp-for="Name"></label>
+                <label asp-for="Type"></label>
             </div>
             <div class="col-8">
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Type" class="form-control"/>
+                <span asp-validation-for="Durability" class="text-danger"></span>
             </div>
 
         </div>
-        <div class="form-group row pt-3">
+        <div class="form-group row  pt-3">
             <div class="col-4">
-                <label asp-for="Name"></label>
+                <label asp-for="Durability"></label>
             </div>
             <div class="col-8">
-                <input asp-for="Name" class="form-control"/>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Durability" class="form-control"/>
+                <span asp-validation-for="Durability" class="text-danger"></span>
             </div>
 
         </div>
-       
+      
         <div class="form-group row pt-3">
             <div class="col-8 offset-4 row">
 
                 <div class="col">
-                    <input type="submit" class="btn btn-primary w-100" value="Create"/>
+                    <input type="submit" class="btn btn-primary w-100" value="Updat "/>
                 </div>
                 <div class="col">
                     <a asp-action="Index" class="btn btn-success w-100"Back>Back</a>

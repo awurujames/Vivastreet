@@ -4,18 +4,18 @@ using Vivastreet.Models;
 
 namespace Vivastreet.Controllers
 {
-    public class ConditionController : Controller
+    public class MaterialController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public ConditionController(ApplicationDbContext db)
+        public MaterialController(ApplicationDbContext db)
         {
             _db = db;
         }
     
         public IActionResult Index()
         {
-            IEnumerable<Condition>? objList = _db.Conditions;
+            IEnumerable<Material>? objList = _db.Materials;
             return View(objList);
         }
 
@@ -27,11 +27,11 @@ namespace Vivastreet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Condition obj)
+        public IActionResult Create(Material obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Conditions?.Add(obj);
+                _db.Materials?.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -39,14 +39,13 @@ namespace Vivastreet.Controllers
 
               
         }
-
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var obj = _db.Conditions?.Find(id);
+           var obj =  _db.Materials?.Find(id);
 
             if (obj == null)
             {
@@ -57,16 +56,15 @@ namespace Vivastreet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Condition obj)
+        public IActionResult Edit(Material obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Conditions?.Update(obj);
+                _db.Materials?.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(obj);
-
 
         }
 
@@ -76,7 +74,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Conditions?.Find(id);
+            var obj = _db.Materials?.Find(id);
 
             if (obj == null)
             {
@@ -89,19 +87,18 @@ namespace Vivastreet.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Conditions?.Find(id);
+            var obj = _db.Materials?.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Conditions?.Remove(obj);
+                _db.Materials?.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
 
             return View(obj);
-
-
         }
+
     }
 }

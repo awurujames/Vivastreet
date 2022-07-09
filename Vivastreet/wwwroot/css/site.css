@@ -16,3 +16,44 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*no-order div.checkbox {
+    float: right;
+    width: 20%
+}
+
+.checkbox {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    align-self: center;
+    margin-right: 50px;
+    width: -5px;
+}
+
+form-group-lg {
+    width:auto;
+    width: 5px;
+}*/
+
+
+.new-checkbox {
+    margin-left: 35%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.radioclass {
+    margin-left: 35%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.radioclass {
+    /* padding-right: 50%;*/
+}
+
+/*@import url('//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap-theme.min.css');
+
+.body {
+    margin: 3px;
+}*/

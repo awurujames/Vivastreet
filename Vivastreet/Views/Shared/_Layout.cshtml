@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Vivastreet.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Fontawesom/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -27,7 +30,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Condition" asp-action="Index">Condition</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="SelectAge" asp-action="Index">Age</a>
+                        </li>
+                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Material" asp-action="Index">Material</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Advertisement" asp-action="Index">Advertisement</a>
                         </li>
                     </ul>
                 </div>
@@ -48,6 +59,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

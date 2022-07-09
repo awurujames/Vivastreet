@@ -1,0 +1,109 @@
+Index: WebPortal/Source/Controllers/Crew/CrewManagementPlanController.cs
+===================================================================
+--- WebPortal/Source/Controllers/Crew/CrewManagementPlanController.cs	(revision 12810)
++++ WebPortal/Source/Controllers/Crew/CrewManagementPlanController.cs	(working copy)
+@@ -86,6 +86,7 @@
+ 							return VisualComponentsHelper.GetEmployees(true);
+ 					},
+ 				  },
++
+ 				  new AdminSelect
+ 				  {
+ 					PropertyName = nameof(CrewManagementPlan.ReplacedCrewId),
+@@ -93,14 +94,8 @@
+ 					IsFiltered = true,
+ 					OptionsOnGetData = (comp, model) =>
+ 					{
+-						if(model != null)
+-						{
+-							var obj = model as CrewManagementPlan;
+-							return VisualComponentsHelper.GetCurrentVesselEmployees(obj.VesselId,null, obj.ReplacedCrewId);
+-						}
+-						Expression<Func<Employee, bool>> where = null;
+-						return VisualComponentsHelper.GetSelectOptions( null, x => (x.Role.IsVesselRole && !x.Deleted ), where, x=> x.FullName);
+-					},
++                            return VisualComponentsHelper.GetOptionalVesselSignOnEmployeesbase<String>(null, null);
++                    },
+ 
+ 				  },
+ 				  new AdminSectionHeader
+Index: WebPortal/Source/Core/VisualComponentsHelper.cs
+===================================================================
+--- WebPortal/Source/Core/VisualComponentsHelper.cs	(revision 12810)
++++ WebPortal/Source/Core/VisualComponentsHelper.cs	(working copy)
+@@ -540,7 +540,17 @@
+ 			return AdminSelectOptions.FromEnumerable(query, displayField, showDeleted, "Id", tagFieldName, selectedIds: selectedId);
+ 		}
+ 
+-		public static IQueryable<EmployeeSignedStatusCustom> GetOptionalVesselSignOnEmployeesQuery<TOrderBy>(Guid? vesselId, DateTime fromDate, bool showPlanned = true, bool showDeleted = false, Expression<Func<EmployeeSignedStatusCustom, bool>> where = null, Guid? selectedId = null, Expression<Func<EmployeeSignedStatusCustom, TOrderBy>> orderBy = null, DateTime? toDate = null)
++        public static AdminSelectOptions GetOptionalVesselSignOnEmployeesbase<TOrderBy>(Guid? vesselId, string displayField = "{FullName} ({RoleName})", Guid? selectedId = null)
++        {
++            displayField = displayField ?? "{FullName} ({RoleName})";
++
++            var query = GetOptionalVesselSignOnEmployeesQuerybase<String>(vesselId,  selectedId);
++
++            return AdminSelectOptions.FromEnumerable(query, displayFields: displayField, selectedIds: selectedId);
++        }
++
++
++        public static IQueryable<EmployeeSignedStatusCustom> GetOptionalVesselSignOnEmployeesQuery<TOrderBy>(Guid? vesselId, DateTime fromDate, bool showPlanned = true, bool showDeleted = false, Expression<Func<EmployeeSignedStatusCustom, bool>> where = null, Guid? selectedId = null, Expression<Func<EmployeeSignedStatusCustom, TOrderBy>> orderBy = null, DateTime? toDate = null)
+ 		{
+ 			var statusesQuery = AppDbContext.Global.Set<EmployeeSignedStatus>()
+ 				.Include("Employee")
+@@ -610,6 +620,47 @@
+ 			return result.OrderBy(x => x.Role.OrderBy).ThenBy(x => x.FullName);
+ 		}
+ 
++		public static IQueryable<EmployeeSignedStatusCustom> GetOptionalVesselSignOnEmployeesQuerybase<TOrderBy>(Guid? vesselId, Guid? selectedId = null)
++		{
++			var statusesQuery = AppDbContext.Global.Set<EmployeeSignedStatus>()
++				.Include("Employee")
++				.Include("Employee.Role");
++
++			var query = statusesQuery
++				.Where(x => !x.Deleted);
++
++			if (vesselId != null)
++				query = query.Where(x => x.VesselId == vesselId);
++			
++			if (selectedId != null)
++				query = query.Union(
++					statusesQuery.Where(x => x.EmployeeId == selectedId).Take(1)
++				);
++
++			var result = query
++				.Select(n => new EmployeeSignedStatusCustom
++				{
++					Id = n.EmployeeId,
++					FullName = n.Employee.FullName,
++					Deleted = n.Employee.Deleted,
++					Role = n.Role,
++					RoleName = n.Role.Name,
++					Employee = n.Employee,
++					Nationality = n.Employee.Nationality.Name,
++					GroupId = n.RoleId,
++					SignedStatusId = n.Id,
++					SignedOnDate = n.SignedOn,
++					SignedOffDate = n.SignedOff,
++					SignOnPortName = n.SignOnPort.Name,
++					SignOffPortName = n.SignOffPort.Name,
++					OtherReason = n.SignedOffReason.Name,
++					WageScale = n.CrewWageScaleAllocations.Where(x => x.SigningStatusId == n.Id).Select(x => x.ToStringField).FirstOrDefault(),
++					SigningStatusDisplay = n.ToStringField
++				})
++				.Distinct();
++			return result.OrderBy(x => x.Role.OrderBy).ThenBy(x => x.FullName);
++		}
++
+ 		public static AdminSelectOptions NewToCompanyEmployees<TOrderBy>(Guid? vesselId, DateTime fromDate, bool showPlanned = true, bool showDeleted = false, string tagFieldName = "", Expression<Func<EmployeeSignedStatusCustom, bool>> where = null, Guid? selectedId = null, string displayField = "{FullName} ({Role.Name})", Expression<Func<EmployeeSignedStatusCustom, TOrderBy>> orderBy = null, DateTime? toDate = null)
+         {
+ 			var evaluatedCvId = AppDbContext.Global.CrewCVs.Where(q => q.ApprovalStatus != ApprovalStatus.Approved).ToList()
+@@ -834,7 +885,7 @@
+ 		{
+ 			return GetSelectOptions(null, @where, null, p => p.Name);
+ 		}
+-
++		 
+ 		public static AdminSelect GetPortsSelect(string propertyName, string searchProperty, LayoutData layout = null, string editorContainerWidth = null, bool readOnly = false, bool isVirtual = false, string title = null, bool required = false, string tabId = null)
+ 		{
+ 			var select = new AdminSelect

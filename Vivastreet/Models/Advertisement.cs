@@ -9,6 +9,7 @@ namespace Vivastreet.Models
         [Required]
         [MaxLength(30)]
         public string? Title { get; set; }
+        [Display(Name = "Post Code")]
         public int? PostCode { get; set; }
         [MaxLength(300)]
         public string? Description { get; set; }
@@ -50,7 +51,7 @@ namespace Vivastreet.Models
         [ForeignKey("ConditionId")]
         public virtual Condition? Condition { get; set; }
         public int MaterialId { get; set; }
-        [ForeignKey("ConditionId")]
+        [ForeignKey("MaterialId")]
         public virtual Material? Material { get; set; }
         public ICollection<Rate>? Rates { get; set; }
     }

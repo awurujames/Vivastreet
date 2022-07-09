@@ -126,6 +126,8 @@ namespace Vivastreet.Migrations
 
                     b.HasIndex("ConditionId");
 
+                    b.HasIndex("MaterialId");
+
                     b.ToTable("Advertisements");
                 });
 
@@ -214,12 +216,15 @@ namespace Vivastreet.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Durability")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -312,7 +317,7 @@ namespace Vivastreet.Migrations
 
                     b.HasOne("Vivastreet.Models.Material", "Material")
                         .WithMany()
-                        .HasForeignKey("ConditionId")
+                        .HasForeignKey("MaterialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

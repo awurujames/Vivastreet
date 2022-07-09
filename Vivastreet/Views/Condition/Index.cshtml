@@ -5,7 +5,7 @@
                 <h2 class=" text-primary">Condition List</h2>
             </div>
             <div class="col-6 text right">
-                <a asp-controller="Condition" asp-action="Create" class="btn btn-primary align-self-end">Create New Condition</a>
+                <a asp-controller="Condition" asp-action="Create" class="btn btn-primary align-self-end"><i class="fas fa-plus"></i> &nbsp; Create New Condition</a>
                 
             </div>
         </div>
@@ -35,10 +35,10 @@
                         <td class="text-center">
                             <div class="w-75 btn-group" role="group">
                              <a asp-controller="Condition" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-outline-primary mx-2">
-                                Edit
+                                <i class="fas fa-edit"></i>
                             </a>
                             <a asp-controller="Condition" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-outline-danger mx-2">
-                                Delete
+                                <i class="far fa-trash-alt"></i>
                             </a>
                             </div>
                         </td>

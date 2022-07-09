@@ -5,7 +5,7 @@
                 <h2 class=" text-primary">Material List</h2>
             </div>
             <div class="col-6 text right">
-                <a asp-controller="Material" asp-action="Create" class="btn btn-primary">Create New Material</a>
+                <a asp-controller="Material" asp-action="Create" class="btn btn-primary"> <i class="fas fa-plus"></i> &nbsp; Create New Material</a>
                 
             </div>
         </div>
@@ -42,11 +42,11 @@
                         <td width="28%">@obj.Durability</td>
                         <td class="text-center">
                             <div class="w-75 btn-group" role="group">
-                             <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-outline-primary mx-2">
-                                Edit
+                             <a asp-controller="Material" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-outline-primary mx-2">
+                                <i class="fas fa-edit"></i>
                             </a>
-                            <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-outline-danger mx-2">
-                                Delete
+                            <a asp-controller="Material" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-outline-danger mx-2">
+                                <i class="far fa-trash-alt"></i>
                             </a>
                             </div>
                         </td>

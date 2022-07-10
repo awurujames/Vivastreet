@@ -27,8 +27,6 @@ namespace Vivastreet.Controllers
         }
 
         
-
-        
         public IActionResult Upsert(int? id)
         {
 
@@ -39,8 +37,32 @@ namespace Vivastreet.Controllers
                 {
                     Text = i.Name,
                     Value = i.Id.ToString(),
+                }),
+
+                MaterialSelectListItems = _db.Materials.Select(i => new SelectListItem
+                {
+                    Value = i.Name, 
+                    Text = i.Id.ToString(), 
+
+                }),
+
+                AgeSelectListItem = _db.selectAges.Select(i => new SelectListItem
+                {
+                    //Value = i.Name,
+                    Text = i.Id.ToString(),
+
+                }),
+
+                ConditionSelectListItems = _db.Conditions.Select(i => new SelectListItem
+                {
+                    Value = i.Name,
+                    Text = i.Id.ToString(),
+
                 })
+
+
             };
+
 
 
             //Advertisement advert = new Advertisement();

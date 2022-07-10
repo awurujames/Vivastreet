@@ -19,6 +19,7 @@ namespace Vivastreet.Models
 
         [Display(Name = "Show phone number on advert ")]
         public bool ShowPhoneNumber { get; set; }
+        [Display(Name = "Email Address")]
         public string? EmailAddress { get; set; }
         [Display(Name = "Premier Banner")]
         public bool PremierBanner { get; set; }
@@ -37,11 +38,17 @@ namespace Vivastreet.Models
         public bool Other { get; set; }
         public bool English { get; set; }
         public bool Portugese { get; set; }
+        [Display(Name = "Delivery")]
         public bool IsDeliveryService { get; set; }
+        [Display(Name = "$")]
         public string? DeliveryServiceFee { get; set; }
+        [Display(Name = "$")]
         public string? PickUpServiceFee { get; set; }
+        [Display(Name = "Pickup")]
         public bool IsPickUpService { get; set; }
+        [Display(Name = "Installation")]
         public bool IsInstallationService { get; set; }
+        [Display(Name = "$")]
         public string? InstallationServiceFee { get; set; }
         public int Age { get; set; }
         public int CategoryId { get; set; }

@@ -121,13 +121,13 @@
 
          <div class="form-group row  pt-3">
             <div class="col-4">
-                <label asp-for="Advertisement.Age"></label>
+                <label asp-for="Advertisement.SelectAge"></label>
             </div>
             <div class="col-8">  
-                <select asp-for="Advertisement.Age" asp-items="@Model.AgeSelectListItem" class="form-control">
+                <select asp-for="Advertisement.SelectAgeId" asp-items="@Model.AgeSelectListItem" class="form-control">
                     <option disabled selected>--Select Age--</option>
                 </select>
-                <span asp-validation-for="Advertisement.Age" class="text-danger"></span>
+                <span asp-validation-for="Advertisement.SelectAgeId" class="text-danger"></span>
             </div>
 
         </div>

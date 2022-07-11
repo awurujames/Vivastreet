@@ -22,6 +22,9 @@ namespace Vivastreet.Controllers
             foreach (var item in objList)
             {
                 item.Category = _db.Categories?.FirstOrDefault(u => u.Id == item.CategoryId);
+                item.Condition = _db.Conditions?.FirstOrDefault(u => u.Id == item.ConditionId);
+                item.Material = _db.Materials?.FirstOrDefault(u => u.Id == item.MaterialId);
+                item.SelectAge = _db.selectAges?.FirstOrDefault(u => u.Id == item.MaterialId);
             }
             return View(objList);
         }

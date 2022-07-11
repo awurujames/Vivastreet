@@ -16,321 +16,306 @@
     <div class=" border p-3">
 
         <div class="form-group row">
-            <h2 class="text-info pl-3">@title</h2>
+            <h2 class="text-info pl-3">@title</h2>  
         </div>
 
         <div class="row">
-    <div class="col-8 border p-3">
-        <h4 class="radioclass"> Post Your Free Add Here</h4>
+            <div class="col-8 border p-3">
+                 <h4 class="radioclass"> Post Your Free Add Here</h4>
 
-        <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.Category"></label>
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.Category"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.CategoryId" class="text-danger"></span>
+                </div>
+
             </div>
-            <div class="col-8">  
-                <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
-                    <option disabled selected>--Select Category--</option>
-                </select>
-                <span asp-validation-for="Advertisement.CategoryId" class="text-danger"></span>
+
+            <div class="radioclass ">
+                <div class="form-check pt-2">
+                  <input asp-for="Advertisement.PremierBanner"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label asp-for="Advertisement.PremierBanner"></label>
+                </div>
+
+                 <div class="form-check pt-2">
+                  <input asp-for="Advertisement.AddvertOTheWeek"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label asp-for="Advertisement.AddvertOTheWeek"></label>
+                </div>
+
+                 <div class="form-check pt-2">
+                  <input asp-for="Advertisement.ClassicAdvert"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label asp-for="Advertisement.ClassicAdvert"></label>
+                </div>
+
+            </div>
+        
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.PostCode"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Advertisement.PostCode" class="form-control"/>
+                    <span asp-validation-for="Advertisement.PostCode" class="text-danger"></span>
+                </div>
             </div>
 
-        </div>
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Advertisement.Title" class="form-control"/>
+                    <span asp-validation-for="Advertisement.Title" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.Description"></label>
+                </div>
+                <div class="col-8">  
+                    <textarea asp-for="Advertisement.Description" class="form-control summernote"></textarea>
+                    <span asp-validation-for="Advertisement.Description" class="text-danger"></span>
+                </div>
+            </div>
+        
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.Material"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.Material" asp-items="@Model.MaterialSelectListItems" class="form-control">
+                        <option disabled selected>--Select Material--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.Material" class="text-danger"></span>
+                </div>
+            </div>
+
+             <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.SelectAgeId"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.SelectAgeId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                        <option disabled selected>--Select Age--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.SelectAgeId" class="text-danger"></span>
+                </div>
+
+            </div>
+
+             <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.Condition"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
+                        <option disabled selected>--Select A Condition--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.ConditionId" class="text-danger"></span>
+                </div>
+
+            </div>
+
+                <label>Language</label>
+            <div class="new-checkbox ">
+                 <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.English" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.English"></label>
+                </div>
+
+                 <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Spanish" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Spanish"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.French" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.French"></label>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Italian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Italian"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.German"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Portugese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Portugese"></label>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Russian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Russian"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Chinese"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.Other" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Other"></label>
+                </div>
+            </div>
 
 
+
+            <label>Services Offered</label>
         
 
-        @*<div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement."></label> MaterialSelectListItems
-            </div>
-            <div class="col-8">  
-                <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
-                    <option disabled selected>--Select Category--</option>
-                </select>
-                <span asp-validation-for="Advertisement.CategoryId" class="text-danger"></span>
-                <span asp-validation-for="Advertisement.CategoriId" class="text-danger"></span>
-            </div>
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.IsDeliveryService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.IsDeliveryService"></label>
+                </div>
 
-        </div>*@
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.German"></label>*@
+                </div>
 
-
-
-        <div class="radioclass ">
-            <div class="form-check pt-2">
-              <input asp-for="Advertisement.PremierBanner"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label asp-for="Advertisement.PremierBanner"></label>
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.DeliveryServiceFee"></label>
+                </div>
             </div>
 
-             <div class="form-check pt-2">
-              <input asp-for="Advertisement.AddvertOTheWeek"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label asp-for="Advertisement.AddvertOTheWeek"></label>
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.IsPickUpService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.IsPickUpService"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Chinese"></label>*@
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.PickUpServiceFee"></label>
+                    </div>
+                    <div class="col-4">
+                         <input asp-for="Advertisement.PickUpServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"  />
+                    </div>
+                </div>
             </div>
 
-             <div class="form-check pt-2">
-              <input asp-for="Advertisement.ClassicAdvert"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label asp-for="Advertisement.ClassicAdvert"></label>
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.IsInstallationService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.IsInstallationService"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Chinese"></label>*@
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.InstallationServiceFee"></label>
+                </div>
             </div>
 
-        </div>
-        
-        <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.PostCode"></label>
+
+
+            <div class="form-group row ">
+                <div class="col-4">
+                    Image
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="Advertisement.PostCode" class="form-control"/>
-                <span asp-validation-for="Advertisement.PostCode" class="text-danger"></span>
-            </div>
-        </div>
+            <br/>
+            <br/>
+            <br/>
 
-        <div class="form-group row pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.Title"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Advertisement.Title" class="form-control"/>
-                <span asp-validation-for="Advertisement.Title" class="text-danger"></span>
-            </div>
+            <hr/>
+            <h3>
+                Your personal Information
+            </h3>
 
-        </div>
-
-        <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.Description"></label>
-            </div>
-            <div class="col-8">  
-                <textarea asp-for="Advertisement.Description" class="form-control summernote"></textarea>
-                <span asp-validation-for="Advertisement.Description" class="text-danger"></span>
-            </div>
-
-        </div>
-
-        
-        <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.Material"></label>
-            </div>
-            <div class="col-8">  
-                <select asp-for="Advertisement.MaterialId" asp-items="@Model.MaterialSelectListItems" class="form-control">
-                    <option disabled selected>--Select Material--</option>
-                </select>
-                <span asp-validation-for="Advertisement.MaterialId" class="text-danger"></span>
-            </div>
-
-        </div>
-
-         <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.SelectAge"></label>
-            </div>
-            <div class="col-8">  
-                <select asp-for="Advertisement.SelectAgeId" asp-items="@Model.AgeSelectListItem" class="form-control">
-                    <option disabled selected>--Select Age--</option>
-                </select>
-                <span asp-validation-for="Advertisement.SelectAgeId" class="text-danger"></span>
-            </div>
-
-        </div>
-
-         <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.Condition"></label>
-            </div>
-            <div class="col-8">  
-                <select asp-for="Advertisement.ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
-                    <option disabled selected>--Select A Condition--</option>
-                </select>
-                <span asp-validation-for="Advertisement.ConditionId" class="text-danger"></span>
-            </div>
-
-        </div>
-
-            <label>Language</label>
-        <div class="new-checkbox ">
-             <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.English" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.English"></label>
-            </div>
-
-             <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Spanish" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Spanish"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.French" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.French"></label>
-            </div>
-        </div>
-
-        <div class="new-checkbox ">
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Italian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Italian"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.German"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Portugese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Portugese"></label>
-            </div>
-        </div>
-
-        <div class="new-checkbox ">
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Russian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Russian"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Chinese"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.Other" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Other"></label>
-            </div>
-        </div>
-
-
-
-        <label>Services Offered</label>
-        
-
-        <div class="new-checkbox ">
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.IsDeliveryService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.IsDeliveryService"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              @*<input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.German"></label>*@
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.DeliveryServiceFee"></label>
-            </div>
-        </div>
-
-        <div class="new-checkbox ">
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.IsPickUpService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.IsPickUpService"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Chinese"></label>*@
-            </div>
-
-            <div class="form-check form-check-inline">
-                <div class="col-2">
-                    <label asp-for="Advertisement.PickUpServiceFee"></label>
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.PhoneNumber"></label>
                 </div>
                 <div class="col-4">
-                     <input asp-for="Advertisement.PickUpServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"  />
+                <input type="tel" id="number" class="form-control">
+
                 </div>
-            </div>
-        </div>
-
-        <div class="new-checkbox ">
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.IsInstallationService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.IsInstallationService"></label>
-            </div>
-
-            <div class="form-check form-check-inline">
-              @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.Chinese"></label>*@
-            </div>
-
-            <div class="form-check form-check-inline">
-              <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-              <label asp-for="Advertisement.InstallationServiceFee"></label>
-            </div>
-        </div>
-
-
-
-        <div class="form-group row ">
-            <div class="col-4">
-                Image
-            </div>
-            <div class="col-8">
-                <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
-            </div>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-
-        <hr/>
-        <h3>
-            Your personal Information
-        </h3>
-
-        <div class="form-group row pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.PhoneNumber"></label>
-            </div>
-            <div class="col-4">
-            <input type="tel" id="number" class="form-control">
 
             </div>
 
-        </div>
 
-
-         <div class="new-checkbox">
-            <input asp-for="Advertisement.ShowPhoneNumber" type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label asp-for="Advertisement.ShowPhoneNumber"></label>
-        </div>
-
-        <div class="form-group row pt-3">
-            <div class="col-4">
-                <label asp-for="Advertisement.EmailAddress"></label>
+             <div class="new-checkbox">
+                <input asp-for="Advertisement.ShowPhoneNumber" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label asp-for="Advertisement.ShowPhoneNumber"></label>
             </div>
 
-            <div class="col-8">
-                <input asp-for="Advertisement.EmailAddress" class="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                <span asp-validation-for="Advertisement.EmailAddress" class="text-danger"></span>
-            </div>
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.EmailAddress"></label>
+                </div>
+
+                <div class="col-8">
+                    <input asp-for="Advertisement.EmailAddress" class="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <span asp-validation-for="Advertisement.EmailAddress" class="text-danger"></span>
+                </div>
                
-        </div>
+            </div>
            
-        <div class="form-group row pt-3">
-            <div class="col-8 offset-4 row">
-                @if(Model.Advertisement.Id != 0)
-                {
-                    //update
-                    <div class="col">
-                        <input type="submit" class="btn btn-primary w-100" value="Updat "/>
-                    </div>
-                }
-                else
-                {
-                    //Create
-                    <div class="col">
-                        <input type="submit" onclick="return validateInput()" class="btn btn-info w-100" value="Create "/>
-                    </div>
-                }
+            <div class="form-group row pt-3">
+                <div class="col-8 offset-4 row">
+                    @if(Model.Advertisement.Id != 0)
+                    {
+                        //update
                         <div class="col">
-                    <a asp-action="Index" class="btn btn-success w-100"Back>
-                        <i class="fas fa-sign-out-alt"></i></a>
+                            <input type="submit" class="btn btn-primary w-100" value="Updat "/>
+                        </div>
+                    }
+                    else
+                    {
+                        //Create
+                        <div class="col">
+                            <input type="submit" onclick="return validateInput()" class="btn btn-info w-100" value="Create "/>
+                        </div>
+                    }
+                            <div class="col">
+                        <a asp-action="Index" class="btn btn-success w-100"Back>
+                            <i class="fas fa-sign-out-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
         <div class="col-4">
             @* Keep this empty *@
+            @if (Model.Advertisement.Id != 0)
+                {
+                    <img src="@WC.ImagePath@Model.Advertisement.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
+                    
+                }
+
         </div>
      </div>
     </div>

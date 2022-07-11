@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Vivastreet.Data;
 using Vivastreet.Models;
 using Vivastreet.Models.ViewModel;
@@ -24,8 +25,9 @@ namespace Vivastreet.Controllers
                 item.Category = _db.Categories?.FirstOrDefault(u => u.Id == item.CategoryId);
                 item.Condition = _db.Conditions?.FirstOrDefault(u => u.Id == item.ConditionId);
                 item.Material = _db.Materials?.FirstOrDefault(u => u.Id == item.MaterialId);
-                item.SelectAge = _db.selectAges?.FirstOrDefault(u => u.Id == item.MaterialId);
+                item.SelectAge = _db.selectAges?.FirstOrDefault(u => u.Id == item.SelectAgeId);
             }
+
             return View(objList);
         }
 
@@ -44,22 +46,22 @@ namespace Vivastreet.Controllers
 
                 MaterialSelectListItems = _db.Materials.Select(i => new SelectListItem
                 {
-                    Value = i.Name, 
-                    Text = i.Id.ToString(), 
+                    Value = i.Id.ToString(), 
+                    Text = i.Name.ToString(), 
 
                 }),
 
                 AgeSelectListItem = _db.selectAges.Select(i => new SelectListItem
                 {
-                    //Value = i.Name,
-                    Text = i.Id.ToString(),
+                    Value = i.Id.ToString(),
+                    Text = i.Age.ToString(),
 
                 }),
 
                 ConditionSelectListItems = _db.Conditions.Select(i => new SelectListItem
                 {
-                    Value = i.Name,
-                    Text = i.Id.ToString(),
+                    Value =  i.Id.ToString(),
+                    Text = i.Name
 
                 })
 
@@ -96,7 +98,7 @@ namespace Vivastreet.Controllers
             {
                 var files = HttpContext.Request.Form.Files;
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                if (AdvertVM.Advertisement.Id == 0)
+                if (AdvertVM.Advertisement.Id== 0)
                 {
                     //create
                     string upload = webRootPath + WC.ImagePath;
@@ -109,18 +111,47 @@ namespace Vivastreet.Controllers
                     }
 
                     AdvertVM.Advertisement.Image = fileName + extension;
+                    var sss = AdvertVM.Advertisement.MaterialId;
 
                     _db.Advertisements.Add(AdvertVM.Advertisement); 
                 }
                 else
                 {
+                    //updating
+                    var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id); 
+                    if (files.Count == 0)
+                    {
+                        string upload = webRootPath + WC.ImagePath;
+                        string fileName = Guid.NewGuid().ToString();
+                        string ext = Path.GetExtension(files[0].FileName);  
 
+                        var oldFile = Path.Combine(upload, objFromDb.Image);
+
+                        if (System.IO.File.Exists(oldFile))
+                        {
+                            System.IO.File.Delete(oldFile);
+                        }
+                    
+
+                        
+                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + ext), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStream);    
+                        }
+
+                        _db.Advertisements.Update(AdvertVM.Advertisement);
+                    }
+                    else
+                    {
+                        AdvertVM.Advertisement.Image = objFromDb.Image;
+                    }
+                    _db.Advertisements.Update(AdvertVM.Advertisement);
                 }
 
                 _db.SaveChanges();  
                 return RedirectToAction("Index");
             }
-            return View();       
+            return View(AdvertVM);
 
               
         }

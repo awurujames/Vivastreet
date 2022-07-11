@@ -52,7 +52,7 @@ namespace Vivastreet.Models
         public string? InstallationServiceFee { get; set; }
         public int SelectAgeId { get; set; }
         [ForeignKey("SelectAgeId")]
-        public virtual SelectAge SelectAge { get; set; }
+        public virtual SelectAge? SelectAge { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category? Category { get; set; }

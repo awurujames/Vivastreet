@@ -20,6 +20,7 @@ namespace Vivastreet.Data
         public DbSet<Rate>? Rates { get; set; }
         public DbSet<SelectAge>? selectAges { get; set; }
         public DbSet<ServiceOffered>? ServiceOffereds { get; set; }
+        public DbSet<City>? Citys { get; set; }
 
     }
 }

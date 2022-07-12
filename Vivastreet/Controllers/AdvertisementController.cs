@@ -119,11 +119,12 @@ namespace Vivastreet.Controllers
                 {
                     //updating
                     var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id);
-                    if (files.Count == 0)
+
+                    if (files.Count > 0)
                     {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();
-                        string ext = Path.GetExtension(files[0].FileName);
+                        string extension = Path.GetExtension(files[0].FileName);
 
                         var oldFile = Path.Combine(upload, objFromDb.Image);
 
@@ -132,22 +133,21 @@ namespace Vivastreet.Controllers
                             System.IO.File.Delete(oldFile);
                         }
 
-
-
-                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + ext), FileMode.Create))
+                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
                         {
                             files[0].CopyTo(fileStream);
                         }
 
-                        _db.Advertisements.Update(AdvertVM.Advertisement);
+                        AdvertVM.Advertisement.Image = fileName + extension;
                     }
                     else
                     {
                         AdvertVM.Advertisement.Image = objFromDb.Image;
                     }
-                    _db.Advertisements.Update(AdvertVM.Advertisement);
-                }
 
+                    _db.Advertisements.Update(AdvertVM.Advertisement);
+
+                }
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -217,7 +217,6 @@ namespace Vivastreet.Controllers
             {
                 System.IO.File.Delete(oldFile);
             }
-
 
             _db.Advertisements.Remove(obj);
             _db.SaveChanges();

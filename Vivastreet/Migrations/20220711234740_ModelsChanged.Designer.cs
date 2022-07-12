@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vivastreet.Data;
 
@@ -11,9 +12,10 @@ using Vivastreet.Data;
 namespace Vivastreet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711234740_ModelsChanged")]
+    partial class ModelsChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +32,10 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("AdvertOfTheWeek")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AdvertisementType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -39,6 +45,10 @@ namespace Vivastreet.Migrations
 
                     b.Property<bool>("Chinese")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ClassicAdvert")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ConditionId")
                         .HasColumnType("int");
@@ -96,6 +106,10 @@ namespace Vivastreet.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PremierBanner")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Russian")

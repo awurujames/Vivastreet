@@ -5,12 +5,13 @@ namespace Vivastreet.Models
 {
     public class Advertisement  
     {
+        
         public int Id { get; set; }
         [Required]
         [MaxLength(30)]
         public string? Title { get; set; }
         [Display(Name = "Post Code")]
-        public int? PostCode { get; set; }
+        public string? PostCode { get; set; }
         [MaxLength(300)]
         public string? Description { get; set; }
         public string? Image { get; set; }
@@ -21,14 +22,6 @@ namespace Vivastreet.Models
         public bool ShowPhoneNumber { get; set; }
         [Display(Name = "Email Address")]
         public string? EmailAddress { get; set; }
-        [Display(Name = "Premier Banner")]
-        public bool PremierBanner { get; set; }
-
-        [Display(Name = "Advert of the week")]
-        public bool AddvertOTheWeek { get; set; }
-
-        [Display(Name = "Classic Advert")]
-        public bool ClassicAdvert { get; set; }
         public bool French { get; set; }
         public bool Italian { get; set; }
         public bool Spanish { get; set; }
@@ -63,5 +56,7 @@ namespace Vivastreet.Models
         [ForeignKey("MaterialId")]
         public virtual Material? Material { get; set; }
         public ICollection<Rate>? Rates { get; set; }
+        [Display(Name = "Advertisement Type")]
+        public string AdvertisementType { get; set; }
     }
 }

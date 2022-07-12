@@ -25,7 +25,7 @@
 
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.Category"></label>
+                    <label asp-for="Advertisement.CategoryId"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
@@ -38,18 +38,19 @@
 
             <div class="radioclass ">
                 <div class="form-check pt-2">
-                  <input asp-for="Advertisement.PremierBanner"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label asp-for="Advertisement.PremierBanner"></label>
+                    @Html.RadioButtonFor(m => m.Advertisement.AdvertisementType,"PremierBanner")
+                  <label>Premier Banner</label>
                 </div>
 
                  <div class="form-check pt-2">
-                  <input asp-for="Advertisement.AddvertOTheWeek"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label asp-for="Advertisement.AddvertOTheWeek"></label>
+                    @Html.RadioButtonFor(m => m.Advertisement.AdvertisementType,"AdvertOfTheWeek")
+
+                  <label>Advert Of TheWeek</label>
                 </div>
 
                  <div class="form-check pt-2">
-                  <input asp-for="Advertisement.ClassicAdvert"  class="form-check-input" value="abc" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label asp-for="Advertisement.ClassicAdvert"></label>
+                    @Html.RadioButtonFor(m => m.Advertisement.AdvertisementType,"ClassicAdvert")
+                  <label>Classic Advert</label>
                 </div>
 
             </div>
@@ -87,13 +88,13 @@
         
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.Material"></label>
+                    <label asp-for="Advertisement.MaterialId"></label>
                 </div>
                 <div class="col-8">  
-                    <select asp-for="Advertisement.Material" asp-items="@Model.MaterialSelectListItems" class="form-control">
+                    <select asp-for="Advertisement.MaterialId" asp-items="@Model.MaterialSelectListItems" class="form-control">
                         <option disabled selected>--Select Material--</option>
                     </select>
-                    <span asp-validation-for="Advertisement.Material" class="text-danger"></span>
+                    <span asp-validation-for="Advertisement.MaterialId" class="text-danger"></span>
                 </div>
             </div>
 
@@ -112,7 +113,7 @@
 
              <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.Condition"></label>
+                    <label asp-for="Advertisement.ConditionId"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
@@ -126,51 +127,51 @@
                 <label>Language</label>
             <div class="new-checkbox ">
                  <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.English" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.English" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.English"></label>
                 </div>
 
                  <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Spanish" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Spanish" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Spanish"></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.French" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.French" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.French"></label>
                 </div>
             </div>
 
             <div class="new-checkbox ">
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Italian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Italian" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Italian"></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.German"></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Portugese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Portugese" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Portugese"></label>
                 </div>
             </div>
 
             <div class="new-checkbox ">
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Russian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Russian" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Russian"></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Chinese"></label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.Other" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.Other" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.Other"></label>
                 </div>
             </div>
@@ -182,7 +183,7 @@
 
             <div class="new-checkbox ">
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.IsDeliveryService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.IsDeliveryService" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.IsDeliveryService"></label>
                 </div>
 
@@ -192,14 +193,14 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.DeliveryServiceFee"></label>
                 </div>
             </div>
 
             <div class="new-checkbox ">
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.IsPickUpService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.IsPickUpService" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.IsPickUpService"></label>
                 </div>
 
@@ -220,7 +221,7 @@
 
             <div class="new-checkbox ">
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.IsInstallationService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.IsInstallationService" class="form-check-input" type="checkbox" id="inlineCheckbox3"   />
                   <label asp-for="Advertisement.IsInstallationService"></label>
                 </div>
 
@@ -230,7 +231,8 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="
+"  />
                   <label asp-for="Advertisement.InstallationServiceFee"></label>
                 </div>
             </div>
@@ -259,7 +261,7 @@
                     <label asp-for="Advertisement.PhoneNumber"></label>
                 </div>
                 <div class="col-4">
-                <input type="tel" id="number" class="form-control">
+                <input asp-for="Advertisement.PhoneNumber" type="tel" id="number" class="form-control">
 
                 </div>
 

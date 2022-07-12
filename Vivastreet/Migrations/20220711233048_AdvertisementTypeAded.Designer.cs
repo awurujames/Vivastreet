@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vivastreet.Data;
 
@@ -11,9 +12,10 @@ using Vivastreet.Data;
 namespace Vivastreet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711233048_AdvertisementTypeAded")]
+    partial class AdvertisementTypeAded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +32,9 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("AddvertOTheWeek")
+                        .HasColumnType("bit");
+
                     b.Property<string>("AdvertisementType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -38,6 +43,9 @@ namespace Vivastreet.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Chinese")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ClassicAdvert")
                         .HasColumnType("bit");
 
                     b.Property<int>("ConditionId")
@@ -95,8 +103,11 @@ namespace Vivastreet.Migrations
                     b.Property<bool>("Portugese")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("PostCode")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("PremierBanner")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("Russian")
                         .HasColumnType("bit");

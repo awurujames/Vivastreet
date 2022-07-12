@@ -98,7 +98,7 @@ namespace Vivastreet.Controllers
             {
                 var files = HttpContext.Request.Form.Files;
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                if (AdvertVM.Advertisement.Id== 0)
+                if (AdvertVM.Advertisement.Id == 0)
                 {
                     //create
                     string upload = webRootPath + WC.ImagePath;
@@ -113,17 +113,17 @@ namespace Vivastreet.Controllers
                     AdvertVM.Advertisement.Image = fileName + extension;
                     var sss = AdvertVM.Advertisement.MaterialId;
 
-                    _db.Advertisements.Add(AdvertVM.Advertisement); 
+                    _db.Advertisements.Add(AdvertVM.Advertisement);
                 }
                 else
                 {
                     //updating
-                    var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id); 
+                    var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id);
                     if (files.Count == 0)
                     {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();
-                        string ext = Path.GetExtension(files[0].FileName);  
+                        string ext = Path.GetExtension(files[0].FileName);
 
                         var oldFile = Path.Combine(upload, objFromDb.Image);
 
@@ -131,12 +131,12 @@ namespace Vivastreet.Controllers
                         {
                             System.IO.File.Delete(oldFile);
                         }
-                    
 
-                        
+
+
                         using (var fileStream = new FileStream(Path.Combine(upload, fileName + ext), FileMode.Create))
                         {
-                            files[0].CopyTo(fileStream);    
+                            files[0].CopyTo(fileStream);
                         }
 
                         _db.Advertisements.Update(AdvertVM.Advertisement);
@@ -148,71 +148,80 @@ namespace Vivastreet.Controllers
                     _db.Advertisements.Update(AdvertVM.Advertisement);
                 }
 
-                _db.SaveChanges();  
-                return RedirectToAction("Index");
-            }
-            return View(AdvertVM);
-
-              
-        }
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-           var obj =  _db.Categories?.Find(id);
-
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Categories?.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(obj);
-        }
 
+            AdvertVM.CategorySelectListItems = _db.Categories.Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString(),
+            });
+
+            AdvertVM.MaterialSelectListItems = _db.Materials.Select(i => new SelectListItem
+            {
+                Value = i.Id.ToString(),
+                Text = i.Name.ToString(),
+
+            });
+
+            AdvertVM.AgeSelectListItem = _db.selectAges.Select(i => new SelectListItem
+            {
+                Value = i.Id.ToString(),
+                Text = i.Age.ToString(),
+
+            });
+
+            AdvertVM.ConditionSelectListItems = _db.Conditions.Select(i => new SelectListItem
+            {
+                Value = i.Id.ToString(),
+                Text = i.Name
+
+            });
+            return View(AdvertVM);
+
+        }
+       
+        //GET DELETE
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var obj = _db.Categories?.Find(id);
+            Advertisement advertisement = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).FirstOrDefault(u => u.Id == id);    
+            
 
-            if (obj == null)
+            if (advertisement == null)
             {
                 return NotFound();
             }
-            return View(obj);
+            return View(advertisement);
         }
 
-        [HttpPost]
+        //POST - DELETE
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Categories?.Find(id);
+            var obj = _db.Advertisements.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-                _db.Categories?.Remove(obj);
+            string upload = _webHostEnvironment.WebRootPath + WC.ImagePath;
+            var oldFile = Path.Combine(upload, obj.Image);
+
+            if (System.IO.File.Exists(oldFile))
+            {
+                System.IO.File.Delete(oldFile);
+            }
+
+
+            _db.Advertisements.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-
-            return View(obj);
 
 
         }

@@ -1,50 +1,289 @@
-﻿@model Vivastreet.Models.Category
+﻿@model Vivastreet.Models.Advertisement
+
 
 <form method="post" asp-action="DeletePost">
-    <input asp-for="Id" hidden/>
+
+        <input asp-for="Id" hidden/>
+
     <div class=" border p-3">
 
-
         <div class="form-group row">
-            <h2 class="text-info pl-3">Delete Category</h2>
+            <h2 class="text-info pl-3">Delete Advert</h2>  
         </div>
-
 
         <div class="row">
-    <div class="col-8 border p-3">
-        <div class="form-group row pt-3">
-            <div class="col-4">
-                <label asp-for="Name"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Name" disabled class="form-control"/>
-            </div>
+            <div class="col-8 border p-3">
+                 <h4 class="radioclass"> Post Your Free Add Here</h4>
 
-        </div>
-        <div class="form-group row  pt-3">
-            <div class="col-4">
-                <label asp-for="DisplayOder"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="DisplayOder" disabled class="form-control"/>
-            </div>
-
-        </div>
-       
-        <div class="form-group row pt-3">
-            <div class="col-8 offset-4 row">
-
-                <div class="col">
-                    <input type="submit" class="btn btn-danger w-100" value="Delete "/>
+             <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="CategoryId"></label>
                 </div>
-                <div class="col">
-                    <a asp-action="Index" class="btn btn-success w-100"Back><i class="fas fa-sign-out-alt"></i></a>
+                <div class="col-8">  
+                    <input asp-for="Category.Name" disabled class="form-control"/>
+                </div>
+
+            </div>
+
+            <div class="radioclass ">
+                <div class="form-check pt-2">
+                    @Html.RadioButtonFor(m => m.AdvertisementType,"PremierBanner")
+                  <label>Premier Banner</label>
+                </div>
+
+                 <div class="form-check pt-2">
+                    @Html.RadioButtonFor(m => m.AdvertisementType,"AdvertOfTheWeek")
+
+                  <label>Advert Of TheWeek</label>
+                </div>
+
+                 <div class="form-check pt-2">
+                    @Html.RadioButtonFor(m => m.AdvertisementType,"ClassicAdvert")
+                  <label>Classic Advert</label>
+                </div>
+
+            </div>
+        
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="PostCode"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PostCode" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="Title"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Title" class="form-control"/>
+                </div>
+
+            </div>
+
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Description"></label>
+                </div>
+                <div class="col-8">  
+                    <textarea asp-for="Description" class="form-control summernote"></textarea>
+                </div>
+            </div>
+        
+             <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="MaterialId"></label>
+                </div>
+                <div class="col-8">  
+                    <input asp-for="Material.Name" disabled class="form-control"/>
+                </div>
+
+            </div>
+
+              <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="SelectAgeId"></label>
+                </div>
+                <div class="col-8">  
+                    <input asp-for="SelectAge.Age" disabled class="form-control"/>
+                </div>
+
+            </div>
+
+             <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="ConditionId"></label>
+                </div>
+                <div class="col-8">  
+                    <input asp-for="Condition.Name" disabled class="form-control"/>
+                </div>
+
+            </div>
+
+                <label>Language</label>
+            <div class="new-checkbox ">
+                 <div class="form-check form-check-inline">
+                  <input asp-for="English" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="English"></label>
+                </div>
+
+                 <div class="form-check form-check-inline">
+                  <input asp-for="Spanish" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Spanish"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="French" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="French"></label>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Italian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Italian"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="German"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Portugese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Portugese"></label>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="Russian" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Russian"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Chinese"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="Other" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="Other"></label>
+                </div>
+            </div>
+
+            <label>Services Offered</label>
+        
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="IsDeliveryService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="IsDeliveryService"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.German"></label>*@
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="DeliveryServiceFee"></label>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="IsPickUpService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="IsPickUpService"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Chinese"></label>*@
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <div class="col-2">
+                        <label asp-for="PickUpServiceFee"></label>
+                    </div>
+                    <div class="col-4">
+                         <input asp-for="PickUpServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"  />
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-checkbox ">
+                <div class="form-check form-check-inline">
+                  <input asp-for="IsInstallationService" class="form-check-input" type="checkbox" id="inlineCheckbox3" value=""  />
+                  <label asp-for="IsInstallationService"></label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
+                  <label asp-for="Advertisement.Chinese"></label>*@
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input asp-for="InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="
+"  />
+                  <label asp-for="InstallationServiceFee"></label>
+                </div>
+            </div>
+
+
+
+            @*<div class="form-group row ">
+                <div class="col-4">
+                    Image
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
+                </div>
+            </div>*@
+            <br/>
+            <br/>
+            <br/>
+
+            <hr/>
+            <h3>
+                Your personal Information
+            </h3>
+
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="PhoneNumber"></label>
+                </div>
+                <div class="col-4">
+                <input type="tel" id="number" class="form-control">
+
+                </div>
+
+            </div>
+
+
+             <div class="new-checkbox">
+                <input asp-for="ShowPhoneNumber" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label asp-for="ShowPhoneNumber"></label>
+            </div>
+
+            <div class="form-group row pt-3">
+                <div class="col-4">
+                    <label asp-for="EmailAddress"></label>
+                </div>
+
+                <div class="col-8">
+                    <input asp-for="EmailAddress" class="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+               
+            </div>
+           
+            <div class="form-group row pt-3">
+                <div class="col-8 offset-4 row">
+                   
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger w-100" >Delete</button>
+                        </div>
+                    
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"Back>
+                            <i class="fas fa-sign-out-alt"></i></a>
+                        </div>
                 </div>
             </div>
         </div>
-    </div>
+
         <div class="col-4">
             @* Keep this empty *@
+            @if (Model.Id != 0)
+                {
+                    <img src="@WC.ImagePath@Model.Image" class="w-100" style="border-radius:5px; border:1px solid #bbb"/>
+                    
+                }
+
         </div>
      </div>
     </div>
@@ -54,4 +293,16 @@
 @section Scripts{
 
   @{<partial name="_ValidationScriptsPartial"/>}
+
+    <script>
+
+        $(document).ready(function() {
+                $('.summernote').summernote({
+                    height:200
+                    disable: true
+                });
+            });
+       
+
+    </script>
 }

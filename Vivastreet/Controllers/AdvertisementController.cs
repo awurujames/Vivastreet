@@ -189,7 +189,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            Advertisement advertisement = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).FirstOrDefault(u => u.Id == id);    
+            Advertisement? advertisement = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).FirstOrDefault(u => u.Id == id); 
             
 
             if (advertisement == null)

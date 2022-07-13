@@ -2,6 +2,6 @@
 {
     public class WC
     {
-        public static string ImagePath = @"\images\productImages";
+        public static string ImagePath = @"\images\productImages\";
     }
 }

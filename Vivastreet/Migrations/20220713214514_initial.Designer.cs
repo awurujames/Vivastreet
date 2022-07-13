@@ -12,7 +12,7 @@ using Vivastreet.Data;
 namespace Vivastreet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220709182105_initial")]
+    [Migration("20220713214514_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,19 +32,14 @@ namespace Vivastreet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("AddvertOTheWeek")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<string>("AdvertisementType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Chinese")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("ClassicAdvert")
                         .HasColumnType("bit");
 
                     b.Property<int>("ConditionId")
@@ -102,14 +97,14 @@ namespace Vivastreet.Migrations
                     b.Property<bool>("Portugese")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("PostCode")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("PremierBanner")
-                        .HasColumnType("bit");
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Russian")
                         .HasColumnType("bit");
+
+                    b.Property<int>("SelectAgeId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("ShowPhoneNumber")
                         .HasColumnType("bit");
@@ -129,6 +124,8 @@ namespace Vivastreet.Migrations
                     b.HasIndex("ConditionId");
 
                     b.HasIndex("MaterialId");
+
+                    b.HasIndex("SelectAgeId");
 
                     b.ToTable("Advertisements");
                 });
@@ -151,6 +148,39 @@ namespace Vivastreet.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Vivastreet.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Abuja")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Benin")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Kano")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lagos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PortHarcourt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Citys");
                 });
 
             modelBuilder.Entity("Vivastreet.Models.Condition", b =>
@@ -323,11 +353,19 @@ namespace Vivastreet.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Vivastreet.Models.SelectAge", "SelectAge")
+                        .WithMany()
+                        .HasForeignKey("SelectAgeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
                     b.Navigation("Condition");
 
                     b.Navigation("Material");
+
+                    b.Navigation("SelectAge");
                 });
 
             modelBuilder.Entity("Vivastreet.Models.Rate", b =>

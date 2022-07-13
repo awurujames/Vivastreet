@@ -23,6 +23,23 @@ namespace Vivastreet.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Citys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Abuja = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lagos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PortHarcourt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kano = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Benin = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Citys", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Conditions",
                 columns: table => new
                 {
@@ -107,15 +124,12 @@ namespace Vivastreet.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    PostCode = table.Column<int>(type: "int", nullable: true),
+                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShowPhoneNumber = table.Column<bool>(type: "bit", nullable: false),
                     EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PremierBanner = table.Column<bool>(type: "bit", nullable: false),
-                    AddvertOTheWeek = table.Column<bool>(type: "bit", nullable: false),
-                    ClassicAdvert = table.Column<bool>(type: "bit", nullable: false),
                     French = table.Column<bool>(type: "bit", nullable: false),
                     Italian = table.Column<bool>(type: "bit", nullable: false),
                     Spanish = table.Column<bool>(type: "bit", nullable: false),
@@ -131,10 +145,11 @@ namespace Vivastreet.Migrations
                     IsPickUpService = table.Column<bool>(type: "bit", nullable: false),
                     IsInstallationService = table.Column<bool>(type: "bit", nullable: false),
                     InstallationServiceFee = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false),
+                    SelectAgeId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     ConditionId = table.Column<int>(type: "int", nullable: false),
-                    MaterialId = table.Column<int>(type: "int", nullable: false)
+                    MaterialId = table.Column<int>(type: "int", nullable: false),
+                    AdvertisementType = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,6 +170,12 @@ namespace Vivastreet.Migrations
                         name: "FK_Advertisements_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Advertisements_selectAges_SelectAgeId",
+                        column: x => x.SelectAgeId,
+                        principalTable: "selectAges",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -197,6 +218,11 @@ namespace Vivastreet.Migrations
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Advertisements_SelectAgeId",
+                table: "Advertisements",
+                column: "SelectAgeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rates_AdvertisementId",
                 table: "Rates",
                 column: "AdvertisementId");
@@ -205,13 +231,13 @@ namespace Vivastreet.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Citys");
+
+            migrationBuilder.DropTable(
                 name: "Langauges");
 
             migrationBuilder.DropTable(
                 name: "Rates");
-
-            migrationBuilder.DropTable(
-                name: "selectAges");
 
             migrationBuilder.DropTable(
                 name: "ServiceOffereds");
@@ -227,6 +253,9 @@ namespace Vivastreet.Migrations
 
             migrationBuilder.DropTable(
                 name: "Materials");
+
+            migrationBuilder.DropTable(
+                name: "selectAges");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model Vivastreet.Models.Advertisement
 
 
-<form method="post" asp-action="DeletePost">
+<form method="post">
 
         <input asp-for="Id" hidden/>
 
@@ -25,7 +25,7 @@
 
             </div>
 
-            <div class="radioclass ">
+            <div class="radioclass "> 
                 <div class="form-check pt-2">
                     @Html.RadioButtonFor(m => m.AdvertisementType,"PremierBanner")
                   <label>Premier Banner</label>

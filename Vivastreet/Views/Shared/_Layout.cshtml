@@ -20,7 +20,10 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-left">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <partial name="_LoginPartial"/>
+
                     <ul class="navbar-nav flex-grow-1">
                         
                         <li class="nav-item">
@@ -37,6 +40,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Condition" asp-action="Index">Condition</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="SelectAge" asp-action="Index">Age</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Material" asp-action="Index">Material</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Advertisement" asp-action="Index">Advertisement</a>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Advertisement" asp-action="Index">Advertisement</a>
 
                             @*<li><hr class="dropdown-divider"></li>*@

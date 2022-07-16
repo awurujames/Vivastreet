@@ -1,8 +1,12 @@
 //using FluentAssertions.Common;
 using FluentAssertions.Common;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Vivastreet.Repository.IRepository;
+using Vivastreet.Repository.Repository;
 //using System.Configuration;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +15,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(optionS =>
             optionS.UseSqlServer(connectionString));
 
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
+builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
+builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 
 builder.Services.AddControllersWithViews();
 
@@ -29,8 +42,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();        
 app.UseAuthorization();
+
+builder.Services.AddRazorPages();
+
 
 app.MapControllerRoute(
     name: "default",

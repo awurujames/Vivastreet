@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 using Vivastreet.Models;
-using Vivastreet.Models.ViewModel;
+using Vivastreet_Models.ViewModel;
 
 namespace Vivastreet.Controllers
 {
@@ -32,11 +32,21 @@ namespace Vivastreet.Controllers
             };
             return View(homeVM);
         }
-        
-        public IActionResult Privacy()
+
+        public IActionResult Details(int id)
         {
-            return View();
+            DetailsVM detailsVM = new DetailsVM()
+            {
+                Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault()
+
+            };
+            return View(detailsVM);
         }
+        
+        //public IActionResult Privacy()
+        //{
+        //    return View();
+        //}
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         //public IActionResult Error()

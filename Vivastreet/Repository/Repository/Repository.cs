@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 using Vivastreet.Repository.IRepository;
+using Vivastreet_DataAccess;
 
 namespace Vivastreet.Repository.Repository
 {
@@ -15,7 +16,9 @@ namespace Vivastreet.Repository.Repository
             _db = db;
             this.dbSet = _db.Set<T>();
         }
-    
+
+       
+
         public void Add(T entity)
         {
             dbSet.Add(entity);
@@ -78,7 +81,7 @@ namespace Vivastreet.Repository.Repository
             dbSet.Remove(entity);
         }
 
-        public void SaveChangs()
+        public void Save()
         {
             _db.SaveChanges();
         }

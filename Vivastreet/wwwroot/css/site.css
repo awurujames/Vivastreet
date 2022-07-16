@@ -33,8 +33,8 @@ body {
     margin-top: 40px;
 }
 
-.radioclass {
-    /* padding-right: 50%;*/
+.card-header {
+    margin-left: 2px
 }
 
 /*@import url('//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap-theme.min.css');

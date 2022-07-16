@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 using Vivastreet.Models;
+using Vivastreet_Models;
+using Vivastreet.Repository.IRepository;
 
 namespace Vivastreet.Controllers
 {
     public class ConditionController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IConditionRepository _ConRepo;
 
-        public ConditionController(ApplicationDbContext db)
+        public ConditionController(IConditionRepository ConRepo)
         {
-            _db = db;
+            _ConRepo = ConRepo;
         }
     
         public IActionResult Index()
         {
-            IEnumerable<Condition>? objList = _db.Conditions;
+            IEnumerable<Condition>? objList = _ConRepo.GetAll();
             return View(objList);
         }
 
@@ -31,8 +33,8 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Conditions?.Add(obj);
-                _db.SaveChanges();
+                _ConRepo.Add(obj);
+                _ConRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);       
@@ -46,7 +48,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Conditions?.Find(id);
+            var obj = _ConRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -61,8 +63,8 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Conditions?.Update(obj);
-                _db.SaveChanges();
+                _ConRepo.Update(obj);
+                _ConRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -76,7 +78,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Conditions?.Find(id);
+            var obj = _ConRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -89,14 +91,14 @@ namespace Vivastreet.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Conditions?.Find(id);
+            var obj = _ConRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Conditions?.Remove(obj);
-            _db.SaveChanges();
+            _ConRepo.Remove(obj);
+            _ConRepo.Save();
             return RedirectToAction("Index");
 
             return View(obj);

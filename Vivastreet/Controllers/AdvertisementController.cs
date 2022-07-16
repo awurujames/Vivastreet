@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Vivastreet.Data;
-using Vivastreet.Models;
-using Vivastreet.Models.ViewModel;
+using Vivastreet_DataAccess;
+using Vivastreet_Models;
+using Vivastreet_Models.ViewModel;
+using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
@@ -35,7 +36,7 @@ namespace Vivastreet.Controllers
         public IActionResult Upsert(int? id)
         {
 
-            AdvertisementViewModel AdvertVM = new AdvertisementViewModel()
+           AdvertisementViewModel AdvertVM = new AdvertisementViewModel()
             {
                 Advertisement = new Advertisement(),
                 CategorySelectListItems = _db.Categories.Select(i => new SelectListItem

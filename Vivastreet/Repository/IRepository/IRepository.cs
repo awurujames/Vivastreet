@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+﻿ using System.Linq.Expressions;
 
 namespace Vivastreet.Repository.IRepository
 {
@@ -24,7 +24,7 @@ namespace Vivastreet.Repository.IRepository
         void Add(T entity); 
         void Remove(T entity);
 
-        void SaveChangs();
+        void Save();
             
 
     }

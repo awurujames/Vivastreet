@@ -1,4 +1,8 @@
 ﻿@model Vivastreet_Models.ViewModel.HomeVM
+@using Vivastreet_Models
+
+
+
 
 <div class="container">
     <div class="text-center">
@@ -11,6 +15,91 @@
         }
          
     </div>
+
+    <div class="container-Add mt-10">
+        <div class="main-cont row p-3">
+            
+
+                <div class="premier-banner col-2 border p-3">
+                @*<div class="">  
+                   <div class="">
+                    <label asp-for="Advertisement.Category"></label>
+                </div>*@
+               @* <div class="col-8">  
+                    <select asp-for="Advertisement.CategoryId" asp-items="@Model" class="form-control">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.CategoryId" class="text-danger"></span>
+                </div>
+                </div>*@
+                    <div class="col">
+                       <label asp-for="Advertisement.Condition"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+                   <div class="col">
+                       <label asp-for="Advertisement.Condition"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.Material"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.SelectAge"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.Rates"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.Rates"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.Condition"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <div class="col">
+                       <label asp-for="Advertisement.Condition"></label>
+                    </div>
+                </div>
+
+                <div class="premier-banner col-1 border p-3">
+                    <button class="btn btn-warning filter-button" data-filter="all">Search</button>
+                </div>
+
+        </div>
+    </div>
+
+    <div class="container-Add mt-10">
+        <div class="main-cont row">
+
+            <div class="premier-banner col-6 border p-3">
+                <h3>Premier Banner</h3>
+            </div>
+
+            <div class="premier-banner col-6 border p-3">
+                <h3>Premier Banner</h3>
+            </div>
+
+        </div>
+    </div>
+
     <br/>
     <div class="row">
         @foreach (var item in Model.Advertisements)
@@ -20,6 +109,7 @@
         }
     </div>
 </div>
+
 
 @section Scripts{
     <script>

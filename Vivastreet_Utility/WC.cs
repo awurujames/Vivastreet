@@ -5,7 +5,7 @@
         public static string ImagePath = @"\images\productImages\";
 
         public static string AdminRole = "Admin";
-        public static string RegularUser = "Regular";  
+        public static string CustomerRole = "Customer";  
 
 
     }

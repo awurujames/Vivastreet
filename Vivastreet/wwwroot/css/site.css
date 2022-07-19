@@ -37,8 +37,22 @@ body {
     margin-left: 2px
 }
 
-/*@import url('//netdna.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap-theme.min.css');
+.form-abc {
+    margin-left: 40%;
+    margin-top: -10%;
+}
 
-.body {
-    margin: 3px;
-}*/
+.card-Contact {
+    margin-left: 8%;
+}
+
+.card-similar-add {
+    margin-left: 25%;
+}
+
+.form-floating {
+    margin-top : 45px;
+}
+.container-Add {
+    margin-top: 25px;
+}

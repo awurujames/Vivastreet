@@ -1,21 +1,10 @@
-﻿@*@model Vivastreet_Models.ViewModel.HomeVM
-@using Vivastreet_Models
+﻿@model Vivastreet.ViewModel.HomeViewModel
 
-*@
+
+
 
 
 <div class="container">
-    @*<div class="text-center">
-        <button class="btn btn-danger filter-button" data-filter="all">All</button>
-        @foreach (var obj in Model.Categories)
-        {
-            <button class="btn btn-outline-success filter-button" data-filter="@obj.Name.Replace(' ', '_')">
-                @obj.Name
-            </button>
-        }
-         
-    </div>
-
     <div class="container-Add mt-10">
         <div class="main-cont row p-3">
             
@@ -45,7 +34,7 @@
                           </div>
 
                         <div class="col">
-                         <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
+                         <select asp-for="CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
                                 <option disabled selected>--Select Category--</option>
                             </select>
                             <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
@@ -177,7 +166,7 @@
             <partial name="_IndividualAdvertCard" model="item"/>
             //display all product
         }
-    </div>*@
+    </div>
 </div>
 
 

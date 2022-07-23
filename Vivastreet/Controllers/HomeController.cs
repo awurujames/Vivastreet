@@ -5,9 +5,10 @@ using Vivastreet_DataAccess;
 using Vivastreet.Models;
 using Vivastreet_Models.ViewModel;
 using Vivastreet_Models;
-using System.Web.Mvc;
 using Vivastreet.Repository.IRepository;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
+using Vivastreet.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Vivastreet.Controllers
 {
@@ -21,7 +22,7 @@ namespace Vivastreet.Controllers
         private readonly ICityRepository _cityRepo;
         private readonly IMaterialRepository _matRepo;
 
-        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo, ICategoryRepository catRepo, IConditionRepository ConRepo, ICityRepository cityRepo, IMaterialRepository matRepo)
+        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo, ICategoryRepository catRepo, IConditionRepository ConRepo, ICityRepository cityRepo, IMaterialRepository matRepo, ApplicationDbContext db)
         {
 
             _logger = logger;
@@ -30,14 +31,15 @@ namespace Vivastreet.Controllers
             _ConRepo = ConRepo;
             _cityRepo = cityRepo;
             _matRepo = matRepo; 
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            HomeVM homeVM = new HomeVM()
+            HomeViewModel homeVM = new HomeViewModel()
             {
                 //Advertisements = _advertRepo.GetAll(includeProperties: "Advertisement, Condition, Material, SelectAge, City"),
-                //Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.).ToList()
+                Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).ToList(),
                 //Categories = _catRepo.GetAll(),
                 //Materials = _matRepo.GetAll(),
                 //Conditions = _ConRepo.GetAll(),
@@ -45,32 +47,32 @@ namespace Vivastreet.Controllers
 
 
 
-                //CategorySelectListItems = _catRepo.GetAll().Select(i => new SelectListItem
-                //{
-                //    Text = i.Name,
-                //    Value = i.Id.ToString(),
-                //}),
+                CategorySelectListItems = _catRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString(),
+                }),
 
-                //MaterialSelectListItems = _matRepo.GetAll().Select(i => new SelectListItem
-                //{
-                //    Value = i.Id.ToString(),
-                //    Text = i.Name.ToString(),
+                MaterialSelectListItems = _matRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Name.ToString(),
 
-                //}),
+                }),
 
-                //AgeSelectListItem = _ConRepo.GetAll().Select(i => new SelectListItem
-                //{
-                //    Value = i.Id.ToString(),
-                //    Text = i.Name.ToString(),
+                AgeSelectListItem = _ConRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Name.ToString(),
 
-                //}),
+                }),
 
-                //ConditionSelectListItems = _ConRepo.GetAll().Select(i => new SelectListItem
-                //{
-                //    Value = i.Id.ToString(),
-                //    Text = i.Name
+                ConditionSelectListItems = _ConRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Name
 
-                //}),
+                }),
 
 
             };

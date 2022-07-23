@@ -8,10 +8,10 @@ namespace Vivastreet_DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
-        {
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
+        //{
 
-        }
+        //}
 
         public DbSet<Advertisement>? Advertisements { get; set; }
         public DbSet<Category>? Categories { get; set; }
@@ -23,5 +23,10 @@ namespace Vivastreet_DataAccess
         public DbSet<ServiceOffered>? ServiceOffereds { get; set; }
         public DbSet<City>? Citys { get; set; }
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseInMemoryDatabase("TestDb");
+        }
     }
 }

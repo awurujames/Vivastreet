@@ -39,7 +39,7 @@ namespace Vivastreet.Controllers
 
            AdvertisementViewModel AdvertVM = new AdvertisementViewModel()
            {
-               // Advertisement = new Advertisement(),
+               Advertisement = new Advertisement(),
                 CategorySelectListItems = _db.Categories.Select(i => new SelectListItem
                 {
                     Text = i.Name,

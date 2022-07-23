@@ -1,4 +1,6 @@
 ﻿
+using System.Web.Mvc;
+
 namespace Vivastreet_Models.ViewModel
 {
     public  class HomeVM
@@ -12,6 +14,12 @@ namespace Vivastreet_Models.ViewModel
         public IEnumerable<Condition>? Conditions { get; set; }
         public IEnumerable<ServiceOffered>? ServiceOffered { get; set; }
 
+        public Advertisement? Advertisement { get; set; }
+
+        public IEnumerable<SelectListItem>? CategorySelectListItems { get; set; }
+        public IEnumerable<SelectListItem>? MaterialSelectListItems { get; set; }
+        public IEnumerable<SelectListItem>? AgeSelectListItem { get; set; }
+        public IEnumerable<SelectListItem>? ConditionSelectListItems { get; set; }
 
     }
 }

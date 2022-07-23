@@ -2,7 +2,7 @@
 //using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 //using Microsoft.EntityFrameworkCore;
 
-//namespace Vivastreet.Data;
+//namespace Vivastreet_DataAccess;
 
 //public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 //{

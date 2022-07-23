@@ -26,7 +26,7 @@
 
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.CategoryId"></label>
+                    <label asp-for="Advertisement.Category"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
@@ -89,7 +89,7 @@
         
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.MaterialId"></label>
+                    <label asp-for="Advertisement.Material"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.MaterialId" asp-items="@Model.MaterialSelectListItems" class="form-control">
@@ -101,7 +101,7 @@
 
              <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.SelectAgeId"></label>
+                    <label asp-for="Advertisement.SelectAge"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.SelectAgeId" asp-items="@Model.AgeSelectListItem" class="form-control">
@@ -114,7 +114,7 @@
 
              <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.ConditionId"></label>
+                    <label asp-for="Advertisement.Condition"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
@@ -193,14 +193,23 @@
                   <label asp-for="Advertisement.German"></label>*@
                 </div>
 
-                <div class="form-check form-check-inline">
+                <div class="form-abc row  pt-3 flex-right">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
+                    </div>
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                    </div>
+                </div>
+
+                @*<div class="form-check form-check-inline row">
                     <div class="col-6">
                      <label asp-for="Advertisement.DeliveryServiceFee"></label>
                     </div>
                     <div class="col-6">
                         <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
                     </div>
-                </div>
+                </div>*@
             </div>
 
             <div class="new-checkbox ">
@@ -214,12 +223,12 @@
                   <label asp-for="Advertisement.Chinese"></label>*@
                 </div>
 
-                <div class="form-check form-check-inline">
-                    <div class="col-6">
-                        <label asp-for="Advertisement.PickUpServiceFee"></label>
+                <div class="form-abc row  pt-3 flex-right">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
                     </div>
-                    <div class="col-6">
-                         <input asp-for="Advertisement.PickUpServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"  />
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
                     </div>
                 </div>
             </div>
@@ -235,15 +244,14 @@
                   <label asp-for="Advertisement.Chinese"></label>*@
                 </div>
 
-                @*<div class="form-check form-check-inline">
-                    <div class="col-6">
-                        <label asp-for="Advertisement.InstallationServiceFee"></label>
-                    <div/>
-                    <div class="col-6">
-                        <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="
+                <div class="form-abc row  pt-3 flex-right">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
                     </div>
-"  />
-                </div>*@
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                    </div>
+                </div>
             </div>
 
 

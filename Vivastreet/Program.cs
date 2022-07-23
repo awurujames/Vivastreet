@@ -26,6 +26,7 @@ builder.Services.AddScoped<IConditionRepository, ConditionRepository>();
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IRateRepository, RateRepository>();
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

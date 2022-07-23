@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vivastreet_Models
@@ -14,6 +15,7 @@ namespace Vivastreet_Models
         public string? PostCode { get; set; }
         [MaxLength(300)]
         public string? Description { get; set; }
+        //public List<IFormFile>? Image { get; set; }
         public string? Image { get; set; }
         [Display(Name = "Phone Number")]
         public string? PhoneNumber { get; set; }
@@ -55,8 +57,16 @@ namespace Vivastreet_Models
         public int MaterialId { get; set; }
         [ForeignKey("MaterialId")]
         public virtual Material? Material { get; set; }
+
+        //public int CityId { get; set; }
+        //[ForeignKey("CityId")]
+        //public virtual City? City { get; set; }
+
+        public ICollection<City>? City { get; set; }
         public ICollection<Rate>? Rates { get; set; }
         [Display(Name = "Advertisement Type")]
-        public string AdvertisementType { get; set; }
+        public string? AdvertisementType { get; set; }
+
+       
     }
 }

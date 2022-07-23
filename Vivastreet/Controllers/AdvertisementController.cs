@@ -20,14 +20,15 @@ namespace Vivastreet.Controllers
     
         public IActionResult Index()
         {
-            IEnumerable<Advertisement>? objList = _db.Advertisements;
-            foreach (var item in objList)
-            {
-                item.Category = _db.Categories?.FirstOrDefault(u => u.Id == item.CategoryId);
-                item.Condition = _db.Conditions?.FirstOrDefault(u => u.Id == item.ConditionId);
-                item.Material = _db.Materials?.FirstOrDefault(u => u.Id == item.MaterialId);
-                item.SelectAge = _db.selectAges?.FirstOrDefault(u => u.Id == item.SelectAgeId);
-            }
+            IEnumerable<Advertisement>? objList = _db.Advertisements.ToList();
+            //foreach (var item in objList)
+            //{
+            //    item.Category = _db.Categories?.FirstOrDefault(u => u.Id == item.CategoryId);
+            //    item.Condition = _db.Conditions?.FirstOrDefault(u => u.Id == item.ConditionId);
+            //    item.Material = _db.Materials?.FirstOrDefault(u => u.Id == item.MaterialId);
+            //    item.SelectAge = _db.selectAges?.FirstOrDefault(u => u.Id == item.SelectAgeId);
+
+            //}
 
             return View(objList);
         }
@@ -37,11 +38,12 @@ namespace Vivastreet.Controllers
         {
 
            AdvertisementViewModel AdvertVM = new AdvertisementViewModel()
-            {
-                Advertisement = new Advertisement(),
+           {
+               // Advertisement = new Advertisement(),
                 CategorySelectListItems = _db.Categories.Select(i => new SelectListItem
                 {
                     Text = i.Name,
+
                     Value = i.Id.ToString(),
                 }),
 
@@ -65,7 +67,6 @@ namespace Vivastreet.Controllers
                     Text = i.Name
 
                 })
-
 
             };
 
@@ -112,9 +113,10 @@ namespace Vivastreet.Controllers
                     }
 
                     AdvertVM.Advertisement.Image = fileName + extension;
-                    var sss = AdvertVM.Advertisement.MaterialId;
 
                     _db.Advertisements.Add(AdvertVM.Advertisement);
+
+                    //var sss = AdvertVM.Advertisement.MaterialId;
                 }
                 else
                 {
@@ -182,7 +184,7 @@ namespace Vivastreet.Controllers
             return View(AdvertVM);
 
         }
-       
+
         //GET DELETE
         public IActionResult Delete(int? id)
         {
@@ -190,8 +192,8 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            Advertisement? advertisement = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).FirstOrDefault(u => u.Id == id); 
-            
+            Advertisement? advertisement = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).FirstOrDefault(u => u.Id == id);
+
 
             if (advertisement == null)
             {
@@ -225,6 +227,49 @@ namespace Vivastreet.Controllers
 
 
         }
+
+        //public IActionResult MultiFile()
+        //{
+        //    Advertisement model = new Advertisement();
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //public IActionResult MultiUpload(Advertisement model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        model.IsResponse = true;
+        //        if (model.Files.Count > 0)
+        //        {
+        //            foreach (var file in model.Files)
+        //            {
+
+        //                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Files");
+
+        //                //create folder if not exist
+        //                if (!Directory.Exists(path))
+        //                    Directory.CreateDirectory(path);
+
+
+        //                string fileNameWithPath = Path.Combine(path, file.FileName);
+
+        //                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+        //                {
+        //                    file.CopyTo(stream);
+        //                }
+        //            }
+        //            model.IsSuccess = true;
+        //            model.Message = "Files upload successfully";
+        //        }
+        //        else
+        //        {
+        //            model.IsSuccess = false;
+        //            model.Message = "Please select files";
+        //        }
+        //    }
+        //    return View("MultiFile", model);
+        //}
 
     }
 }

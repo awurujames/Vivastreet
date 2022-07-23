@@ -17,7 +17,7 @@
     <div class=" border p-3">
 
         <div class="form-group row">
-            <h2 class="text-info pl-3">@title</h2>  
+            <h2 class="text-info pl-3">@title</h2>      
         </div>
 
         <div class="row">
@@ -28,7 +28,7 @@
                 <div class="col-4">
                     <label asp-for="Advertisement.Category"></label>
                 </div>
-                <div class="col-8">  
+                <div class="col-8"> 
                     <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
                         <option disabled selected>--Select Category--</option>
                     </select>
@@ -125,6 +125,19 @@
 
             </div>
 
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.City"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.City" asp-items="@Model.CitySelectListItems" class="form-control">
+                        <option disabled selected>--Select A Condition--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.City" class="text-danger"></span>
+                </div>
+
+            </div>
+
                 <label>Language</label>
             <div class="new-checkbox ">
                  <div class="form-check form-check-inline">
@@ -189,8 +202,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.German"></label>*@
+                  
                 </div>
 
                 <div class="form-abc row  pt-3 flex-right">
@@ -202,14 +214,7 @@
                     </div>
                 </div>
 
-                @*<div class="form-check form-check-inline row">
-                    <div class="col-6">
-                     <label asp-for="Advertisement.DeliveryServiceFee"></label>
-                    </div>
-                    <div class="col-6">
-                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
-                    </div>
-                </div>*@
+                
             </div>
 
             <div class="new-checkbox ">
@@ -219,8 +224,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.Chinese"></label>*@
+                 
                 </div>
 
                 <div class="form-abc row  pt-3 flex-right">
@@ -240,8 +244,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.Chinese"></label>*@
+                  
                 </div>
 
                 <div class="form-abc row  pt-3 flex-right">
@@ -264,6 +267,24 @@
                     <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
                 </div>
             </div>
+
+            @*<div class="row mt-2">
+                <div class="col-12">
+                    <label class="col-form-label">Select Multiple Files</label>
+                    <input asp-for="Files" class="form-control" multiple/>
+                    <span asp-validation-for="Files" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Upload Files</button>
+                </div>
+            </div>
+
+
+
             <br/>
             <br/>
             <br/>

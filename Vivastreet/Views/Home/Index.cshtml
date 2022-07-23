@@ -1,11 +1,11 @@
-﻿@model Vivastreet_Models.ViewModel.HomeVM
+﻿@*@model Vivastreet_Models.ViewModel.HomeVM
 @using Vivastreet_Models
 
-
+*@
 
 
 <div class="container">
-    <div class="text-center">
+    @*<div class="text-center">
         <button class="btn btn-danger filter-button" data-filter="all">All</button>
         @foreach (var obj in Model.Categories)
         {
@@ -21,66 +21,136 @@
             
 
                 <div class="premier-banner col-2 border p-3">
-                @*<div class="">  
-                   <div class="">
-                    <label asp-for="Advertisement.Category"></label>
-                </div>*@
-               @* <div class="col-8">  
-                    <select asp-for="Advertisement.CategoryId" asp-items="@Model" class="form-control">
-                        <option disabled selected>--Select Category--</option>
+                
+                    <div class="premier-bannerj btn btn border p-3" >
+
+                       <div class="col">
+                           <label asp-for="Advertisement.Material"></label>
+
+                        </div>
+                        <div class="col">
+                            <input asp-for="Advertisement.Material" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+                
+                     <div class=" premier-bannerj btn btn border p-3 row">
+
+                       <div class="col">
+                          <div class="col">
+                            <label asp-for="Advertisement.Condition">Maximum Age</label>
+                          </div>
+
+                        <div class="col">
+                         <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+
+                       </div>
+
+                       <div class="col">
+                          <div class="col">
+                            <label asp-for="Advertisement.Condition">Minimum Age</label>
+                          </div>
+
+                        <div class="col">
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+
+                       </div>
+                       
+                    </div>
+                    
+                </div>
+
+                <div class="premier-banner col-2 border p-3" style=" background-color :lightgray">
+                
+                     <div class=" premier-bannerj btn btn border p-3">
+
+                       <div class="col">
+                           <label asp-for="Advertisement.Rates">Mn</label>
+                       </div>
+
+                        <div class="col">
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+                
+                     <div class=" premier-bannerj btn btn border p-3 row">
+
+                       <div class="col">
+                          <div class="col">
+                            <label asp-for="Advertisement.Condition">Maximum Age</label>
+                          </div>
+
+                        <div class="col">
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+
+                       </div>
+
+                       <div class="col">
+                          <div class="col">
+                            <label asp-for="Advertisement.Condition">Minimum Age</label>
+                          </div>
+
+                        <div class="col">
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+
+                       </div>
+                       
+                    </div>
+                    
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+                
+                     <div class="premier-bannerj btn btn border p-3">
+
+                       <div class="col">
+                           <label asp-for="Advertisement.Condition"></label>
+                        </div>
+                        <div class="col">
+                            <select asp-for="Advertisement.ConditionId" class="form-control">
+                        <option disabled selected>--Select A Condition--</option>
+                        @{
+                            foreach (var item in Model.ConditionSelectListItems)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }
+                        }
+                      
                     </select>
-                    <span asp-validation-for="Advertisement.CategoryId" class="text-danger"></span>
-                </div>
-                </div>*@
-                    <div class="col">
-                       <label asp-for="Advertisement.Condition"></label>
+                        </div>
                     </div>
+                    
                 </div>
 
                 <div class="premier-banner col-2 border p-3">
-                   <div class="col">
-                       <label asp-for="Advertisement.Condition"></label>
-                    </div>
-                </div>
+                
+                     <div class="premier-bannerj btn btn border p-3">
 
-                <div class="premier-banner col-1 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.Material"></label>
+                       <div class="col">
+                           <label asp-for="Advertisement.Condition"></label>
+                        </div>
+                        <div class="col">
+                            <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                        </div>
+                        
                     </div>
-                </div>
-
-                <div class="premier-banner col-1 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.SelectAge"></label>
-                    </div>
-                </div>
-
-                <div class="premier-banner col-1 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.Rates"></label>
-                    </div>
-                </div>
-
-                <div class="premier-banner col-1 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.Rates"></label>
-                    </div>
-                </div>
-
-                <div class="premier-banner col-2 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.Condition"></label>
-                    </div>
-                </div>
-
-                <div class="premier-banner col-1 border p-3">
-                    <div class="col">
-                       <label asp-for="Advertisement.Condition"></label>
-                    </div>
-                </div>
-
-                <div class="premier-banner col-1 border p-3">
-                    <button class="btn btn-warning filter-button" data-filter="all">Search</button>
+                    <div class="SearchBtn mt-3">
+                            <div class="SearchBtn w-50% btn btn-danger border p-3">Search >>
+                        </div>
                 </div>
 
         </div>
@@ -107,7 +177,7 @@
             <partial name="_IndividualAdvertCard" model="item"/>
             //display all product
         }
-    </div>
+    </div>*@
 </div>
 
 

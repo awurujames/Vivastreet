@@ -173,12 +173,10 @@ namespace Vivastreet_DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -215,12 +213,10 @@ namespace Vivastreet_DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -239,7 +235,6 @@ namespace Vivastreet_DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AdvertisementType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
@@ -364,27 +359,15 @@ namespace Vivastreet_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Abuja")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("AdvertisementId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Benin")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Kano")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lagos")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PortHarcourt")
-                        .IsRequired()
+                    b.Property<string>("CityName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementId");
 
                     b.ToTable("Citys");
                 });
@@ -635,6 +618,15 @@ namespace Vivastreet_DataAccess.Migrations
                     b.Navigation("SelectAge");
                 });
 
+            modelBuilder.Entity("Vivastreet_Models.City", b =>
+                {
+                    b.HasOne("Vivastreet_Models.Advertisement", "Advertisement")
+                        .WithMany("City")
+                        .HasForeignKey("AdvertisementId");
+
+                    b.Navigation("Advertisement");
+                });
+
             modelBuilder.Entity("Vivastreet_Models.Rate", b =>
                 {
                     b.HasOne("Vivastreet_Models.Advertisement", "Advertisement")
@@ -648,6 +640,8 @@ namespace Vivastreet_DataAccess.Migrations
 
             modelBuilder.Entity("Vivastreet_Models.Advertisement", b =>
                 {
+                    b.Navigation("City");
+
                     b.Navigation("Rates");
                 });
 #pragma warning restore 612, 618

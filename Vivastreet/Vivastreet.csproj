@@ -38,10 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\productImages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Vivastreet_Data_Access\Vivastreet_DataAccess.csproj" />
     <ProjectReference Include="..\Vivastreet_Models\Vivastreet_Models.csproj" />
     <ProjectReference Include="..\Vivastreet_Utility\Vivastreet_Utility.csproj" />

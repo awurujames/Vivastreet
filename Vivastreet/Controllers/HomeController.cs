@@ -21,8 +21,12 @@ namespace Vivastreet.Controllers
         private readonly IConditionRepository _ConRepo;
         private readonly ICityRepository _cityRepo;
         private readonly IMaterialRepository _matRepo;
+        private readonly IRateRepository _rateRepo;
+        private readonly IAgeRepository _ageRepo;
 
-        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo, ICategoryRepository catRepo, IConditionRepository ConRepo, ICityRepository cityRepo, IMaterialRepository matRepo, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo, 
+            ICategoryRepository catRepo, IConditionRepository ConRepo, ICityRepository cityRepo,
+            IMaterialRepository matRepo, IRateRepository rateRepo, IAgeRepository ageRepo, ApplicationDbContext db)
         {
 
             _logger = logger;
@@ -30,8 +34,10 @@ namespace Vivastreet.Controllers
             _catRepo = catRepo;
             _ConRepo = ConRepo;
             _cityRepo = cityRepo;
-            _matRepo = matRepo; 
+            _matRepo = matRepo;
             _db = db;
+            _rateRepo = rateRepo;
+            _ageRepo = ageRepo;
         }
 
         public IActionResult Index()
@@ -39,7 +45,8 @@ namespace Vivastreet.Controllers
             HomeViewModel homeVM = new HomeViewModel()
             {
                 //Advertisements = _advertRepo.GetAll(includeProperties: "Advertisement, Condition, Material, SelectAge, City"),
-                Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).ToList(),
+                Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
+                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).ToList(),
                 //Categories = _catRepo.GetAll(),
                 //Materials = _matRepo.GetAll(),
                 //Conditions = _ConRepo.GetAll(),
@@ -60,14 +67,28 @@ namespace Vivastreet.Controllers
 
                 }),
 
-                AgeSelectListItem = _ConRepo.GetAll().Select(i => new SelectListItem
+                AgeSelectListItem = _ageRepo.GetAll().Select(i => new SelectListItem
                 {
                     Value = i.Id.ToString(),
-                    Text = i.Name.ToString(),
+                    Text = i.Age.ToString(),
 
                 }),
 
                 ConditionSelectListItems = _ConRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.Name
+
+                }),
+
+                CitySelectListItems = _cityRepo.GetAll().Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.CityName.ToString(),
+
+                }),
+
+                RateSelectListItems = _rateRepo.GetAll().Select(i => new SelectListItem
                 {
                     Value = i.Id.ToString(),
                     Text = i.Name
@@ -127,8 +148,8 @@ namespace Vivastreet.Controllers
         {
             DetailsVM detailsVM = new DetailsVM()
             {
-                //Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault()
-                Advertisementz = _advertRepo.FirstOrDefault(u => u.Id == id, includeProperties: "Category, Material, Condition, SelectAge, Rate"),
+                Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault()
+               // Advertisementz = _advertRepo.FirstOrDefault(u => u.Id == id, includeProperties: "Category, Material, Condition, SelectAge, Rate"),
 
             };
             return(IActionResult)View(detailsVM);   

@@ -6,7 +6,7 @@ namespace Vivastreet_Models
     public class Rate
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Delivery rate must be greater than 0")]
         public decimal? Delivery { get; set; }

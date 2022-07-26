@@ -11,6 +11,9 @@ namespace Vivastreet.ViewModel
         public IEnumerable<SelectListItem>? MaterialSelectListItems { get; set; }
         public IEnumerable<SelectListItem>? AgeSelectListItem { get; set; }
         public IEnumerable<SelectListItem>? ConditionSelectListItems { get; set; }
+        public IEnumerable<SelectListItem>? CitySelectListItems { get; set; }
+        public IEnumerable<SelectListItem>? RateSelectListItems { get; set; }
+        
 
 
         //public IEnumerable<Category>? Categories { get; set; }

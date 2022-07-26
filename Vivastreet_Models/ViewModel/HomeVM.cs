@@ -20,6 +20,7 @@ namespace Vivastreet_Models.ViewModel
         public IEnumerable<SelectListItem>? MaterialSelectListItems { get; set; }
         public IEnumerable<SelectListItem>? AgeSelectListItem { get; set; }
         public IEnumerable<SelectListItem>? ConditionSelectListItems { get; set; }
+        public IEnumerable<SelectListItem>? RateSelectListItems { get; set; }
 
     }
 }

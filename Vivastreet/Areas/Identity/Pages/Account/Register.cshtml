@@ -12,7 +12,7 @@ else
 }
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
@@ -46,17 +46,23 @@ else
             @if (User.IsInRole(Vivastreet_Utility.WC.AdminRole))
                 {
                     <h1>Register an Admin Account</h1>
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-warning">Register Admin User</button>
+                    <div class="form-floating">
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-warning">Register Admin User</button>
+
+                    </div>
             }
             else
             {
-                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="form-floating">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                
             }
         </form>
     </div>
 
     <div class="col-md-6 col-md-offset-2">
-        <img src="images/productImages/craft-kitties-Huz0eIMxo5Y-unsplash.jpg">
+        @*<img src="images/productImages/craft-kitties-Huz0eIMxo5Y-unsplash.jpg">*@
         @*<section>
             <h3>Use another service to register.</h3>
             <hr />

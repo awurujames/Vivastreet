@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vivastreet_DataAccess;
@@ -8,6 +9,7 @@ using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
     public class AdvertisementController : Controller
     {
         private readonly ApplicationDbContext _db;

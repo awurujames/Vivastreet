@@ -9,9 +9,13 @@ using Vivastreet.Repository.IRepository;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 using Vivastreet.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
+    //[Authorize(Roles = WC.AdminRole)]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -44,7 +48,7 @@ namespace Vivastreet.Controllers
         {
             HomeViewModel homeVM = new HomeViewModel()
             {
-                //Advertisements = _advertRepo.GetAll(includeProperties: "Advertisement, Condition, Material, SelectAge, City"),
+                //Advertisements = _advertRepo.GetAll(includeProperties: "CategoryAdvertisement, Condition, Material, SelectAge, City"),
                 Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
                 .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).ToList(),
                 //Categories = _catRepo.GetAll(),

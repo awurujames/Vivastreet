@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Vivastreet_DataAccess;
 using Vivastreet_Models;
+using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
+
     public class SelectAgeController : Controller
     {
         private readonly ApplicationDbContext _db;

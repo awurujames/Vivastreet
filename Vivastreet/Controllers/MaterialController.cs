@@ -3,9 +3,13 @@ using Vivastreet_DataAccess;
 using Vivastreet.Models;
 using Vivastreet_Models;
 using Vivastreet.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
+using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
+
     public class MaterialController : Controller
     {
         private readonly IMaterialRepository _matRepo;

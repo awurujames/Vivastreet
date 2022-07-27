@@ -26,11 +26,11 @@
                                     <h3>Contact the Advitiser Here</h3>
                                     <p>Dont forget to mention Vivastreet when you get in touch</p>
                                     <div class=" row-6">
-                                        <div class="col-6 m-4">
+                                        <div class="phonenumber col-6 m-4">
                                             <input type="submit" class="btn btn-success w-70" value="See Phone Number "/>
                                         </div>
 
-                                        <div class="col-6 m-4">
+                                        <div class="phonenumber col-6 m-4">
                                             <input type="submit" class="btn btn-success w-70" value="See E-mail Address"/>
                                         </div>
                         
@@ -249,4 +249,29 @@
         
     </form>
 </div>
+
+@section Scripts{
+    <script>
+            $(document).ready(function() {
+            var phonenumbers = [];
+    $(".phonenumber").each(function(i) {
+        phonenumbers.push($(this).text());
+        var newcontent = $(this).text().substr(0, $(this).text().length - 4)
+        $(this).text(newcontent);
+        $(this).bind("click", function() {
+            if ($(this).text() == phonenumbers[i]) {
+                $(this).text(phonenumbers[i].substr(0, phonenumbers[i].length - 4));
+            } else {
+            $(".phonenumber").each(function(x) {
+                if ($(this).text() == phonenumbers[x]) {
+                   $(this).text(phonenumbers[x].substr(0, phonenumbers[x].length - 4));
+                }
+            });            
+            $(this).text(phonenumbers[i]);
+            }
+        });
+    });
+});
+    </script>
+    }
   

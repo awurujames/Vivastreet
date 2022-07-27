@@ -9,6 +9,7 @@ using Vivastreet.Repository.IRepository;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 using Vivastreet.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PagedList;
 
 namespace Vivastreet.Controllers
 {
@@ -40,20 +41,10 @@ namespace Vivastreet.Controllers
             _ageRepo = ageRepo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(HomeViewModel model)
         {
             HomeViewModel homeVM = new HomeViewModel()
             {
-                //Advertisements = _advertRepo.GetAll(includeProperties: "Advertisement, Condition, Material, SelectAge, City"),
-                Advertisements = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
-                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).ToList(),
-                //Categories = _catRepo.GetAll(),
-                //Materials = _matRepo.GetAll(),
-                //Conditions = _ConRepo.GetAll(),
-                //Cities = _cityRepo.GetAll(),
-
-
-
                 CategorySelectListItems = _catRepo.GetAll().Select(i => new SelectListItem
                 {
                     Text = i.Name,
@@ -94,10 +85,64 @@ namespace Vivastreet.Controllers
                     Text = i.Name
 
                 }),
-
-
             };
-            return View(homeVM);
+
+            var filtered = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
+                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).AsQueryable();
+            //Filter criteria
+            var catId = model.CategoryId;
+            var conId = model.ConditionId;
+            var rateminId = model.RateMinId;
+            var ratemaxId = model.RateMaxId;
+            var ageminId = model.SelectAgeMinId;
+            var agemaxId = model.SelectAgeMaxId;
+            var cityId = model.CityId;
+
+            if(catId.HasValue)
+            {
+                filtered = filtered.Where(i => i.CategoryId == catId.Value);
+            }
+
+            if (conId.HasValue)
+            {
+                filtered = filtered.Where(i => i.ConditionId == conId.Value);
+            }
+
+            if (cityId.HasValue)
+            {
+                filtered = filtered.Where(i => i.MaterialId == cityId.Value);
+            }
+
+            if (rateminId.HasValue)
+            {
+                if (ratemaxId.HasValue)
+                {
+                    filtered = filtered.Where(i => i.RateId == rateminId.Value || i.RateId == ratemaxId.Value);
+                }
+                else
+                {
+                    filtered = filtered.Where(i => i.RateId == rateminId.Value);
+                }
+                
+            }
+
+            if (ageminId.HasValue)
+            {
+                if (agemaxId.HasValue)
+                {
+                    filtered = filtered.Where(i => i.SelectAgeId == ageminId.Value || i.SelectAgeId == agemaxId.Value);
+                }
+                else
+                {
+                    filtered = filtered.Where(i => i.SelectAgeId == ageminId.Value);
+                }
+
+            }
+
+
+            homeVM.Advertisements = filtered.ToList();
+            homeVM.Advertisementss = filtered.ToList().ToPagedList(homeVM.pageNumber ?? 1, 3);
+            return View(homeVM.Advertisementss);
         }
 
 

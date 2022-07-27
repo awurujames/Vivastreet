@@ -12,8 +12,8 @@ using Vivastreet_DataAccess;
 namespace Vivastreet_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220721095011_CityForiegnKeyEdited")]
-    partial class CityForiegnKeyEdited
+    [Migration("20220726235056_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -473,7 +473,6 @@ namespace Vivastreet_DataAccess.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

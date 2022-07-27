@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vivastreet_DataAccess.Migrations
 {
-    public partial class DeletedMigFolderAndCreatedAgain : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,19 +62,6 @@ namespace Vivastreet_DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Citys",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Citys", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,7 +160,7 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,7 +181,7 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,7 +201,7 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,13 +219,13 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -258,7 +245,7 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -293,7 +280,6 @@ namespace Vivastreet_DataAccess.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     ConditionId = table.Column<int>(type: "int", nullable: false),
                     MaterialId = table.Column<int>(type: "int", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
                     AdvertisementType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -304,31 +290,44 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Advertisements_Citys_CityId",
-                        column: x => x.CityId,
-                        principalTable: "Citys",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Advertisements_Conditions_ConditionId",
                         column: x => x.ConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Advertisements_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Advertisements_selectAges_SelectAgeId",
                         column: x => x.SelectAgeId,
                         principalTable: "selectAges",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Citys",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdvertisementId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Citys", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Citys_Advertisements_AdvertisementId",
+                        column: x => x.AdvertisementId,
+                        principalTable: "Advertisements",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -337,7 +336,7 @@ namespace Vivastreet_DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Delivery = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     LocalPickUp = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     AdvertisementId = table.Column<int>(type: "int", nullable: false)
@@ -350,18 +349,13 @@ namespace Vivastreet_DataAccess.Migrations
                         column: x => x.AdvertisementId,
                         principalTable: "Advertisements",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisements_CategoryId",
                 table: "Advertisements",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Advertisements_CityId",
-                table: "Advertisements",
-                column: "CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisements_ConditionId",
@@ -418,6 +412,11 @@ namespace Vivastreet_DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Citys_AdvertisementId",
+                table: "Citys",
+                column: "AdvertisementId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rates_AdvertisementId",
                 table: "Rates",
                 column: "AdvertisementId");
@@ -441,6 +440,9 @@ namespace Vivastreet_DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Citys");
+
+            migrationBuilder.DropTable(
                 name: "Langauges");
 
             migrationBuilder.DropTable(
@@ -460,9 +462,6 @@ namespace Vivastreet_DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "Citys");
 
             migrationBuilder.DropTable(
                 name: "Conditions");

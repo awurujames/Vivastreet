@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PagedList;
 using Vivastreet_Models;
 
 namespace Vivastreet.ViewModel
@@ -6,6 +7,7 @@ namespace Vivastreet.ViewModel
     public class HomeViewModel
     {
         public IEnumerable<Advertisement>? Advertisements { get; set; }
+        public IPagedList<Advertisement>? Advertisementss { get; set; }
 
         public IEnumerable<SelectListItem>? CategorySelectListItems { get; set; }
         public IEnumerable<SelectListItem>? MaterialSelectListItems { get; set; }
@@ -24,9 +26,13 @@ namespace Vivastreet.ViewModel
         //public IEnumerable<Condition>? Conditions { get; set; }
         //public IEnumerable<ServiceOffered>? ServiceOffered { get; set; }
         public Advertisement? Advertisement { get; set; }
-        public int SelectAgeId { get; set; }
-        public int CategoryId { get; set; }
-        public int ConditionId { get; set; }
-        public int MaterialId { get; set; }
+        public int? SelectAgeMinId { get; set; }
+        public int? SelectAgeMaxId { get; set; }
+        public int? CategoryId { get; set; }
+        public int? ConditionId { get; set; }
+        public int? RateMinId { get; set; }
+        public int? RateMaxId { get; set; }
+        public int? CityId { get; set; }
+        public int? pageNumber { get; set; }
     }
 }

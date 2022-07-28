@@ -73,6 +73,7 @@ body {
 }
 .premier-bannerj {
     background-color: ghostwhite;
+    width: 100%;
 }
 .search-button {
     display:inline-flex;

@@ -11,7 +11,7 @@
 
                 <div class="premier-banner col-2 border p-3">
 
-                    <div class="premier-bannerj btn btn border p-3">
+                    <div class="premier-bannerj width=50% btn btn border  p-3">
 
                         <div class="col">
                             <label asp-for="Advertisement.Category"></label>
@@ -45,7 +45,7 @@
 
                 <div class="premier-banner col-2 border p-3">
 
-                    <div class=" premier-bannerj border p-3 row">
+                    <div class=" premier-bannerj border p-3  row">
 
                         <div class="col-6">
                             <div class="col">
@@ -60,6 +60,9 @@
                         </div>
 
                         <div class="col-6">
+                            <div class="col">
+                                <label></label>
+                            </div>
                             <div class="col-12">
                                 <select asp-for="RateMaxId" asp-items="@Model.RateSelectListItems" class="form-control">
                                     <option disabled selected>Max</option>
@@ -68,7 +71,11 @@
 
                         </div>
 
-                        <div class="premier-banner col-2 border p-3">
+                    </div>
+
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
 
                             <div class=" premier-bannerj border p-3 row">
 
@@ -85,6 +92,9 @@
                                 </div>
 
                                 <div class="col-6">
+                                    <div class="col">
+                                        <label></label>
+                                     </div>
                                     <div class="col-12">
                                         <select asp-for="SelectAgeMaxId" asp-items="@Model.AgeSelectListItem" class="form-control">
                                             <option disabled selected>Max</option>
@@ -93,11 +103,6 @@
 
                                 </div>
                             </div>
-
-                        </div>
-
-                    </div>
-
                 </div>
 
                 <div class="premier-banner col-2 border p-3">
@@ -137,16 +142,16 @@
                         </div>
 
                     </div>
-
+                     <div class="SearchBtn mt-3">
+                        <div class="SearchBtn w-50% btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
+                        <input type="submit" id="submitId" value="Search>>" />
+                      </div>
+            </div>
 
                 </div>
 
             </div>
-            <div class="SearchBtn mt-3">
-                <div class="SearchBtn w-50% btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
-                    <input type="submit" id="submitId" value="Search>>" />
-                </div>
-            </div>
+           
         }
         <div class="container-Add mt-10">
             <div class="main-cont row">

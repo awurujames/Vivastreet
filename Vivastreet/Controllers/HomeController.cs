@@ -146,7 +146,7 @@ namespace Vivastreet.Controllers
 
             homeVM.Advertisements = filtered.ToList();
             homeVM.Advertisementss = filtered.ToList().ToPagedList(homeVM.pageNumber ?? 1, 3);
-            return View(homeVM.Advertisementss);
+            return View(homeVM);
         }
 
 

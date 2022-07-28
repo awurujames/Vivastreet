@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 using Vivastreet.Models;
+using Vivastreet_Models;
+using Vivastreet.Repository.IRepository;
 
 namespace Vivastreet.Controllers
 {
     public class MaterialController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IMaterialRepository _matRepo;
 
-        public MaterialController(ApplicationDbContext db)
+        public MaterialController(IMaterialRepository matRepo)
         {
-            _db = db;
+            _matRepo = matRepo;
         }
     
         public IActionResult Index()
         {
-            IEnumerable<Material>? objList = _db.Materials;
+            IEnumerable<Material>? objList = _matRepo.GetAll();
             return View(objList);
         }
 
@@ -31,8 +33,8 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Materials?.Add(obj);
-                _db.SaveChanges();
+                _matRepo.Add(obj);
+                _matRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);       
@@ -45,7 +47,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-           var obj =  _db.Materials?.Find(id);
+           var obj = _matRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -60,8 +62,8 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Materials?.Update(obj);
-                _db.SaveChanges();
+                _matRepo.Update(obj);
+                _matRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -74,7 +76,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Materials?.Find(id);
+            var obj = _matRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -87,14 +89,14 @@ namespace Vivastreet.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Materials?.Find(id);
+            var obj = _matRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
             }
 
-                _db.Materials?.Remove(obj);
-            _db.SaveChanges();
+            _matRepo.Remove(obj);
+            _matRepo.Save();
             return RedirectToAction("Index");
 
             return View(obj);

@@ -1,4 +1,5 @@
-﻿@model Vivastreet.Models.ViewModel.AdvertisementViewModel
+﻿@using Vivastreet_Models
+@model Vivastreet_Models.ViewModel.AdvertisementViewModel
 
 @{
     var title = "Create Advert";
@@ -16,7 +17,7 @@
     <div class=" border p-3">
 
         <div class="form-group row">
-            <h2 class="text-info pl-3">@title</h2>  
+            <h2 class="text-info pl-3">@title</h2>      
         </div>
 
         <div class="row">
@@ -25,9 +26,9 @@
 
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.CategoryId"></label>
+                    <label asp-for="Advertisement.Category"></label>
                 </div>
-                <div class="col-8">  
+                <div class="col-8"> 
                     <select asp-for="Advertisement.CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
                         <option disabled selected>--Select Category--</option>
                     </select>
@@ -88,7 +89,7 @@
         
             <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.MaterialId"></label>
+                    <label asp-for="Advertisement.Material"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.MaterialId" asp-items="@Model.MaterialSelectListItems" class="form-control">
@@ -100,7 +101,7 @@
 
              <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.SelectAgeId"></label>
+                    <label asp-for="Advertisement.SelectAge"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.SelectAgeId" asp-items="@Model.AgeSelectListItem" class="form-control">
@@ -113,13 +114,26 @@
 
              <div class="form-group row  pt-3">
                 <div class="col-4">
-                    <label asp-for="Advertisement.ConditionId"></label>
+                    <label asp-for="Advertisement.Condition"></label>
                 </div>
                 <div class="col-8">  
                     <select asp-for="Advertisement.ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
                         <option disabled selected>--Select A Condition--</option>
                     </select>
                     <span asp-validation-for="Advertisement.ConditionId" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group row  pt-3">
+                <div class="col-4">
+                    <label asp-for="Advertisement.City"></label>
+                </div>
+                <div class="col-8">  
+                    <select asp-for="Advertisement.City" asp-items="@Model.CitySelectListItems" class="form-control">
+                        <option disabled selected>--Select A Condition--</option>
+                    </select>
+                    <span asp-validation-for="Advertisement.City" class="text-danger"></span>
                 </div>
 
             </div>
@@ -188,14 +202,19 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.German" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.German"></label>*@
+                  
                 </div>
 
-                <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="checkbox" id="inlineCheckbox3"   />
-                  <label asp-for="Advertisement.DeliveryServiceFee"></label>
+                <div class="form-abc row  pt-3 flex-right">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
+                    </div>
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                    </div>
                 </div>
+
+                
             </div>
 
             <div class="new-checkbox ">
@@ -205,16 +224,15 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.Chinese"></label>*@
+                 
                 </div>
 
-                <div class="form-check form-check-inline">
+                <div class="form-abc row  pt-3 flex-right">
                     <div class="col-2">
-                        <label asp-for="Advertisement.PickUpServiceFee"></label>
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
                     </div>
-                    <div class="col-4">
-                         <input asp-for="Advertisement.PickUpServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"  />
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
                     </div>
                 </div>
             </div>
@@ -226,14 +244,16 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                  @*<input asp-for="Advertisement.Chinese" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"  />
-                  <label asp-for="Advertisement.Chinese"></label>*@
+                  
                 </div>
 
-                <div class="form-check form-check-inline">
-                  <input asp-for="Advertisement.InstallationServiceFee" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="
-"  />
-                  <label asp-for="Advertisement.InstallationServiceFee"></label>
+                <div class="form-abc row  pt-3 flex-right">
+                    <div class="col-2">
+                        <label asp-for="Advertisement.DeliveryServiceFee"></label>
+                    </div>
+                    <div class="col-4">  
+                        <input asp-for="Advertisement.DeliveryServiceFee" class="form-control" type="form-control" id="inlineCheckbox3"   />
+                    </div>
                 </div>
             </div>
 
@@ -247,6 +267,24 @@
                     <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
                 </div>
             </div>
+
+            @*<div class="row mt-2">
+                <div class="col-12">
+                    <label class="col-form-label">Select Multiple Files</label>
+                    <input asp-for="Files" class="form-control" multiple/>
+                    <span asp-validation-for="Files" class="text-danger"></span>
+                </div>
+            </div>*@
+
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Upload Files</button>
+                </div>
+            </div>
+
+
+
             <br/>
             <br/>
             <br/>
@@ -317,7 +355,7 @@
             </div>
             @if (Model.Advertisement.Id != 0)
                 {
-                    <img src="@WC.ImagePath@Model.Advertisement.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
+                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
                     
                 }
 
@@ -334,14 +372,14 @@
     <script>
 
 
-        $("#inlineCheckbox3").change(function(){
+        //$("#inlineCheckbox3").change(function(){
 
-          if (! $('input:checkbox').is('checked')) {
-              $('input:checkbox').prop('checked',true);
-          } else {
-              $('input:checkbox').prop('checked', false);
-          }       
-        });
+        //  if (! $('input:checkbox').is('checked')) {
+        //      $('input:checkbox').prop('checked',true);
+        //  } else {
+        //      $('input:checkbox').prop('checked', false);
+        //  }       
+        //});
 
 
         $(document).ready(function() {

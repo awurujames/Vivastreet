@@ -1,0 +1,252 @@
+﻿@using Vivastreet_Utility
+@model Vivastreet_Models.ViewModel.DetailsVM
+
+<div class="">
+    <form method="post">
+      
+        <div class="container backgroundWhite col-12 col-mg-12- pt-4 row"  >
+            <div class="card p-lg-2 row">
+                <div class="card-header bg-dark  text-light ml-0 row container" style="border-radius: 0px;">
+                    <div class="col-12 col-md-6">
+                        <h1 class="text-white">@Model.Advertisementz.Title</h1>
+                    </div>
+                    <div class="col-12 col-md-6 text-md-right">
+                        <h3 class="text-warning" >@Model.Advertisementz.PostCode</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class=" container-1 col-12 col-lg-6 p-1 text-left">
+                                <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                            </div>
+                            <div class="card-Contact col-12 col-lg-5  p-1 mt-2">
+
+                                <div class="card-body">
+                                    <h3>Contact the Advitiser Here</h3>
+                                    <p>Dont forget to mention Vivastreet when you get in touch</p>
+                                    <div class=" row-6">
+                                        <div class="col-6 m-4">
+                                            <input type="submit" class="btn btn-success w-70" value="See Phone Number "/>
+                                        </div>
+
+                                        <div class="col-6 m-4">
+                                            <input type="submit" class="btn btn-success w-70" value="See E-mail Address"/>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                                <div class="card  col-12 col-lg-12 p-1 text-center mt-2">
+                                    <div class="card-body">
+                                        <h3>Viva Street Safety Center</h3>
+                                        <p>Your safety is of paramount inportance to us</p>
+                    
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card  col-12 col-lg-6 p-1 text-center mt-2">
+                        <div class="card-body">
+                                <div class="col-12 pt-2" style="font-size:13px; text-align:justify" >
+                        <p>@Model.Advertisementz.Description</p>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" container-1 col-12 col-md-2 pb-1 ">
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                    </div>
+                    <div class=" container-1 col-12 col-md-2 pb-2 ">
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                           
+                    </div>
+                        <div class=" container-1 col-12 col-md-2 pb-1 ">
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                           
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card col-6 col-lg-4 p-1 text-center mt-2">
+            <div class="card-body">
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Post Code</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.PostCode</div>
+                    </div>
+                </div>
+
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Material</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.Material.Name</div>
+                    </div>
+                </div>
+
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Age</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.SelectAge.Age</div>
+                    </div>
+                </div>
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Condition</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.Condition.Name</div>
+                    </div>
+                </div>
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Condition</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.Condition.Name</div>
+                    </div>
+                </div>
+                <div class="form-group row  pt-3">
+                    <div class="col-4">
+                        <label>Services Offered</label>
+                    </div>
+                    <div class="col-8">  
+                        <div class="">@Model.Advertisementz.IsDeliveryService</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card  col-12 col-lg-12 p-1 text-center mt-2">
+                <div class="card-body">
+                        Rates here
+                </div>
+            </div>
+        </div>
+        <div class="card-similar-add col-6 col-lg-4 p-2 text-center mt-2">
+            <div class="card-body">
+                    <h3>Similar Add</h3>
+                    <div class="form-group row  pt-3">
+                        <div class="col-4">  
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                        </div>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>@Model.Advertisementz.Title</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Material.Name</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Condition.Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  pt-3">
+                        <div class="col-4">  
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                        </div>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>@Model.Advertisementz.Title</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Material.Name</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Condition.Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row  pt-3">
+                        <div class="col-4">  
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                        </div>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>@Model.Advertisementz.Title</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Material.Name</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Condition.Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row  pt-3">
+                        <div class="col-4">  
+                            <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                        </div>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>@Model.Advertisementz.Title</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Material.Name</label>
+                                </div>
+                                <div col class="col-12">
+                                    <label>@Model.Advertisementz.Condition.Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+       @* <div class="card col-6 col-lg-4 p-1 text-center mt-2">
+            <div class="card-body">
+                   <h3>Contact the Advitiser Here</h3>
+                   <p>Dont forget to mention Vivastreet when you get in touch</p>
+                   <div class=" row-6">
+                       <div class="col-6 m-4">
+                            <input type="submit" class="btn btn-success w-70" value="See Phone Number "/>
+                        </div>
+
+                        <div class="col-6 m-4">
+                            <input type="submit" class="btn btn-success w-70" value="Send Email"/>
+                        </div>
+                        
+                   </div>
+            </div>
+            <div class="card  col-12 col-lg-12 p-1 text-center mt-2">
+                <div class="card-body">
+                   <h3>Viva Street Safety Center</h3>
+                   <p>Your safety is of paramount inportance to us</p>
+                    
+                </div>
+            </div>
+        </div>*@
+       @* <div class="card col-6 col-lg-4 p-2 text-center mt-2">
+            <div class="card-body">
+                    5
+            </div>
+        </div>*@
+        </div>
+        
+    </form>
+</div>
+  

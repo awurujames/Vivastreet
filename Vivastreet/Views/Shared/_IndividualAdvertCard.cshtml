@@ -1,5 +1,6 @@
-﻿@model Vivastreet.Models.Advertisement
-        <div class="col-lg-4 col-md-6 pb-4">
+﻿@model Vivastreet_Models.Advertisement
+       
+        <div class="col-lg-4 col-md-6 pb-4" filter @Model.Category.Name.Replace(' ', '_')>
             <!-- Card-->
             <div class="card bg-white rounded shadow-sm" style="border:1px solid #222">
 
@@ -8,14 +9,14 @@
                     <div class="col-5"><label class="float-right"><span class="text-info h5">@Model.Title</span> / sqft</label> </div>
                 </div>
 
-                <img class="card-img-top img-fluid d-block mx-auto mb-3" src="@WC.ImagePath@Model.Image" alt="Card image cap">
+                <img class="card-img-top img-fluid d-block mx-auto mb-3" src="@Vivastreet_Utility.WC.ImagePath@Model.Image" alt="Card image cap">
                 <div class="card-body p-1 px-3 row">
-                    <div class="col-6">
-                        <span class="badge p-2 border w-100" style="background-color:lavenderblush">Category.Name</span>
+                    <div class="col-4">
+                        <span class="badge p-2  w-100 text-black"  style="background-color: papayawhip">@Model.Category.Name</span>
                     </div>
 
-                    <div class="col-6 border-0">
-                        <span class="badge p-2 border w-100" style="background-color:aliceblue">ApplicationType.Name</span>
+                    <div class="col-4 border-0">
+                        <span class="badge p-2 border w-100 text-black" style="background-color: papayawhip">@Model.Material.Name</span>
                     </div>
 
                     <div class="col-12 pt-2" style="font-size:13px; text-align:justify" >
@@ -23,7 +24,7 @@
                     </div>
 
                     <div class="col-12 p-1">
-                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-dark form-control btn-sm p-2" style="height:40px">View Details</a>
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-gray  form-control btn-sm p-2" style="height:40px">View Details</a>
                     </div>
                 </div>
             </div>

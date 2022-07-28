@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Vivastreet.Data;
+using Vivastreet_DataAccess;
 using Vivastreet.Models;
+using Vivastreet_Models;
+using Vivastreet.Repository.IRepository;
 
 namespace Vivastreet.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _CatRepo;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ICategoryRepository CatRepo)
         {
-            _db = db;
+            _CatRepo = CatRepo;
         }
-    
+
         public IActionResult Index()
         {
-            IEnumerable<Category>? objList = _db.Categories;
+            IEnumerable<Category>? objList = _CatRepo.GetAll();
             return View(objList);
         }
 
@@ -31,21 +33,22 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories?.Add(obj);
-                _db.SaveChanges();
+                _CatRepo.Add(obj);
+                _CatRepo.Save();
                 return RedirectToAction("Index");
             }
-            return View(obj);       
+            return View(obj);
 
-              
+
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-           var obj =  _db.Categories?.Find(id);
+            var obj = _CatRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -60,11 +63,13 @@ namespace Vivastreet.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories?.Update(obj);
-                _db.SaveChanges();
+                _CatRepo.Update(obj);
+                _CatRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
+
+
         }
 
         public IActionResult Delete(int? id)
@@ -73,7 +78,7 @@ namespace Vivastreet.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Categories?.Find(id);
+            var obj = _CatRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
@@ -86,20 +91,19 @@ namespace Vivastreet.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Categories?.Find(id);
+            var obj = _CatRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
             }
 
-                _db.Categories?.Remove(obj);
-            _db.SaveChanges();
+            _CatRepo.Remove(obj);
+            _CatRepo.Save();
             return RedirectToAction("Index");
 
             return View(obj);
 
 
         }
-
     }
 }

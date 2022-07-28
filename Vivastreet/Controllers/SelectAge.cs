@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Vivastreet.Data;
-using Vivastreet.Models;
+using Vivastreet_DataAccess;
+using Vivastreet_Models;
 
 namespace Vivastreet.Controllers
 {

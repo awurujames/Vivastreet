@@ -1,4 +1,4 @@
-﻿@model Vivastreet.Models.Advertisement
+﻿@model Vivastreet_Models.Advertisement
 
 
 <form method="post">
@@ -280,7 +280,7 @@
             @* Keep this empty *@
             @if (Model.Id != 0)
                 {
-                    <img src="@WC.ImagePath@Model.Image" class="w-100" style="border-radius:5px; border:1px solid #bbb"/>
+                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Image" class="w-100" style="border-radius:5px; border:1px solid #bbb"/>
                     
                 }
 

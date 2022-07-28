@@ -243,6 +243,9 @@ namespace Vivastreet_DataAccess.Migrations
                     b.Property<bool>("Chinese")
                         .HasColumnType("bit");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ConditionId")
                         .HasColumnType("int");
 
@@ -300,6 +303,9 @@ namespace Vivastreet_DataAccess.Migrations
 
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RateId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Russian")
                         .HasColumnType("bit");
@@ -359,7 +365,7 @@ namespace Vivastreet_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AdvertisementId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("CityName")
@@ -367,7 +373,7 @@ namespace Vivastreet_DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Citys");
                 });
@@ -471,12 +477,16 @@ namespace Vivastreet_DataAccess.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RateId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AdvertisementId");
+
+                    b.HasIndex("RateId");
 
                     b.ToTable("Rates");
                 });
@@ -622,7 +632,7 @@ namespace Vivastreet_DataAccess.Migrations
                 {
                     b.HasOne("Vivastreet_Models.Advertisement", "Advertisement")
                         .WithMany("City")
-                        .HasForeignKey("AdvertisementId");
+                        .HasForeignKey("CityId");
 
                     b.Navigation("Advertisement");
                 });
@@ -630,10 +640,14 @@ namespace Vivastreet_DataAccess.Migrations
             modelBuilder.Entity("Vivastreet_Models.Rate", b =>
                 {
                     b.HasOne("Vivastreet_Models.Advertisement", "Advertisement")
-                        .WithMany("Rates")
+                        .WithMany()
                         .HasForeignKey("AdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Vivastreet_Models.Advertisement", null)
+                        .WithMany("Rates")
+                        .HasForeignKey("RateId");
 
                     b.Navigation("Advertisement");
                 });

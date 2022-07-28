@@ -61,8 +61,12 @@ namespace Vivastreet_Models
         //public int CityId { get; set; }
         //[ForeignKey("CityId")]
         //public virtual City? City { get; set; }
-
+        public int CityId { get; set; }
+        [ForeignKey("CityId")]
         public ICollection<City>? City { get; set; }
+
+        public int RateId { get; set; }
+        [ForeignKey("RateId")]
         public ICollection<Rate>? Rates { get; set; }
         [Display(Name = "Advertisement Type")]
         public string? AdvertisementType { get; set; }

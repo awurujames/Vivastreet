@@ -1,204 +1,197 @@
-﻿@model Vivastreet.ViewModel.HomeViewModel
+﻿  
+@model Vivastreet.ViewModel.HomeViewModel
 
 <div class="container">
     <div class="container-Add mt-10">
-        <div class="main-cont row p-3">
-            
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div class="main-cont row p-3">
+
 
                 <div class="premier-banner col-2 border p-3">
-                
-                    <div class="premier-bannerj btn btn border p-3" >
 
-                       <div class="col">
-                           <label asp-for="Advertisement.Material"></label>
+                    <div class="premier-bannerj btn btn border p-3">
+
+                        <div class="col">
+                            <label asp-for="Advertisement.Category"></label>
 
                         </div>
                         <div class="col">
-                            <select asp-for="CategoryId" asp-items="@Model.MaterialSelectListItems" class="form-control">
+                            <select asp-for="CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
                                 <option disabled selected>-Select-</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                 <div class="premier-banner col-2 border p-3" style=" background-color :lightgray">
-                
-                     <div class=" premier-bannerj btn btn border p-3">
+                <div class="premier-banner col-2 border p-3" style=" background-color :lightgray">
 
-                       <div class="col">
-                           <label asp-for="Advertisement.City">City</label>  
-                       </div>
+                    <div class=" premier-bannerj btn btn border p-3">
 
                         <div class="col">
-                            <select asp-for="CategoryId" asp-items="@Model.CitySelectListItems" class="form-control">
+                            <label asp-for="Advertisement.Material">City</label>
+                        </div>
+
+                        <div class="col">
+                            <select asp-for="CityId" asp-items="@Model.MaterialSelectListItems" class="form-control">
                                 <option disabled selected>-Select-</option>
                             </select>
 
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div class="premier-banner col-2 border p-3">
-                
-                     <div class=" premier-bannerj border p-3 row">
 
-                       <div class="col-6">
-                              <div class="col">
-                                <label asp-for="Advertisement.Condition">Rate</label>
-                              </div>
+                    <div class=" premier-bannerj border p-3 row">
 
+                        <div class="col-6">
                             <div class="col">
-                             <select asp-for="CategoryId" asp-items="@Model.RateSelectListItems" class="form-control">
+                                <label asp-for="Advertisement.Condition">Rate</label>
+                            </div>
+                            <div class="col">
+                                <select asp-for="RateMinId" asp-items="@Model.RateSelectListItems" class="form-control">
+                                    <option disabled selected>Min</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+                            <div class="col-12">
+                                <select asp-for="RateMaxId" asp-items="@Model.RateSelectListItems" class="form-control">
                                     <option disabled selected>Max</option>
                                 </select>
                             </div>
 
-                       </div>
-                       
-                       <div class="col-6">
-                          <div class="col">
-                            <label></label>
-                          </div>
-
-                        <div class="col-12">
-                            <select asp-for="CategoryId" asp-items="@Model.RateSelectListItems" class="form-control">
-                                <option disabled selected>Min</option>
-                            </select>
                         </div>
 
-                       </div>
-                       
+                        <div class="premier-banner col-2 border p-3">
+
+                            <div class=" premier-bannerj border p-3 row">
+
+                                <div class="col-6">
+                                    <div class="col">
+                                        <label asp-for="Advertisement.Condition">Age</label>
+                                    </div>
+                                    <div class="col">
+                                        <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                                            <option disabled selected>Min</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="col-12">
+                                        <select asp-for="SelectAgeMaxId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                                            <option disabled selected>Max</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-                    
-                </div>
 
-               
-
-                <div class="premier-banner col-2 border p-3">
-                
-                     <div class=" premier-bannerj border p-3 row">
-
-                       <div class="col">
-                          <div class="col">
-                            <label asp-for="Advertisement.Condition">Age</label>
-                          </div>
-
-                        <div class="col">
-                            <select asp-for="CategoryId" asp-items="@Model.AgeSelectListItem" class="form-control">
-                                <option disabled selected>Max</option>
-                            </select>
-                        </div>
-
-                       </div>
-
-                       <div class="col">
-                          <div class="col">
-                            <label></label>
-                          </div>
-
-                        <div class="col">
-                             <select asp-for="CategoryId" asp-items="@Model.AgeSelectListItem" class="form-control">
-                                <option disabled selected>Min</option>
-                            </select>
-                        </div>
-
-                       </div>
-                       
-                    </div>
-                    
                 </div>
 
                 <div class="premier-banner col-2 border p-3">
-                
-                     <div class="premier-bannerj btn btn border p-3">
 
-                       <div class="col">
-                           <label asp-for="Advertisement.Condition"></label>
+                    <div class="premier-bannerj btn btn border p-3">
+
+                        <div class="col">
+                            <label asp-for="Advertisement.Condition"></label>
                         </div>
                         <div class="col">
                             <select asp-for="Advertisement.ConditionId" class="form-control">
-                        <option disabled selected>-Select-</option>
-                        @{
-                            foreach (var item in Model.ConditionSelectListItems)
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
-                        }
-                      
-                    </select>
-                        </div>
-                    </div>
-                    
-                </div>
-
-              <div class="premier-banner col-2 border p-3">
-                
-                     <div class="premier-bannerj btn btn border p-3">
-
-                       <div class="col">
-                           <label asp-for="MaterialId">Category</label>
-                        </div>
-                        <div class="col">
-                             <select asp-for="CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
                                 <option disabled selected>-Select-</option>
+                                @{
+                                    foreach (var item in Model.ConditionSelectListItems)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                }
+
                             </select>
                         </div>
-                        
-                    </div>  
-                   
-                    <div class="pull-right pt-3">
-                        <div class="SearchBtn w-50% btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">Search >>
-                        </div>
                     </div>
-        </div>
-    </div>
-    
-    <div class="container-Add mt-10">
-        <div class="main-cont row">
 
-            <div class="premier-banner3 col-6 border p-3">
-                <h3>Premier Banner</h3>
+                </div>
+
+                <div class="premier-banner col-2 border p-3">
+
+                    <div class="premier-bannerj btn btn border p-3">
+
+                        <div class="col">
+                            <label asp-for="ConditionId">Services Offered</label>
+                        </div>
+                        <div class="col">
+                            <select asp-for="ConditionId" asp-items="@Model.ConditionSelectListItems" class="form-control">
+                                <option disabled selected>-Age-</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
             </div>
-
-            <div class="premier-banner3 col-6 border p-3">
-                <h3>Ad Of The Week</h3>
+            <div class="SearchBtn mt-3">
+                <div class="SearchBtn w-50% btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
+                    <input type="submit" id="submitId" value="Search>>" />
+                </div>
             </div>
-
-        </div>
-    </div>
-    
-    <br/>
-    <div class="row">
-        @foreach (var item in Model.Advertisements)
-        {
-            <partial name="_IndividualAdvertCard" model="item"/>
-            //display all product
         }
+        <div class="container-Add mt-10">
+            <div class="main-cont row">
+
+                <div class="premier-banner3 col-6 border p-3">
+                    <h3>Premier Banner</h3>
+                </div>
+
+                <div class="premier-banner3 col-6 border p-3">
+                    <h3>Ad Of The Week</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            @foreach (var item in Model.Advertisements)
+            {
+                <partial name="_IndividualAdvertCard" model="item" />
+                //display all product
+            }
+        </div>
     </div>
-</div>
 
 
-@section Scripts{
+    @section Scripts{
     <script>
-    $(document).ready(function(){
+            $(document).ready(function(){
 
-    $(".filter-button").click(function(){
+            $(".filter-button").click(function(){
 
-        var value = $(this).attr('data-filter');
-        if(value == "all")
-        {
-            $('.filter').show('1000');
-        }
-        else
-        {
-            $(".filter").not('.'+value).hide('3000');
-            $('.filter').filter('.'+value).show('3000');
-            
-        }
-    });
+                var value = $(this).attr('data-filter');
+                if(value == "all")
+                {
+                    $('.filter').show('1000');
+                }
+                else
+                {
+                    $(".filter").not('.'+value).hide('3000');
+                    $('.filter').filter('.'+value).show('3000');
 
-});
-</script>
-}
-  
+                }
+            });
+
+        });
+    </script>
+    }

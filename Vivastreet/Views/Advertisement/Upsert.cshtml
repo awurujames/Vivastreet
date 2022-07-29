@@ -125,19 +125,6 @@
 
             </div>
 
-            <div class="form-group row  pt-3">
-                <div class="col-4">
-                    <label asp-for="Advertisement.City"></label>
-                </div>
-                <div class="col-8">  
-                    <select asp-for="Advertisement.City" asp-items="@Model.CitySelectListItems" class="form-control">
-                        <option disabled selected>--Select A Condition--</option>
-                    </select>
-                    <span asp-validation-for="Advertisement.City" class="text-danger"></span>
-                </div>
-
-            </div>
-
                 <label>Language</label>
             <div class="new-checkbox ">
                  <div class="form-check form-check-inline">
@@ -189,8 +176,6 @@
                   <label asp-for="Advertisement.Other"></label>
                 </div>
             </div>
-
-
 
             <label>Services Offered</label>
         
@@ -257,17 +242,6 @@
                 </div>
             </div>
 
-
-
-            <div class="form-group row ">
-                <div class="col-4">
-                    Image
-                </div>
-                <div class="col-8">
-                    <input type="file" name="files" id="uploadBox" multiple class="form-control"/>
-                </div>
-            </div>
-
             @*<div class="row mt-2">
                 <div class="col-12">
                     <label class="col-form-label">Select Multiple Files</label>
@@ -275,14 +249,6 @@
                     <span asp-validation-for="Files" class="text-danger"></span>
                 </div>
             </div>*@
-
-
-            <div class="row mt-2">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success">Upload Files</button>
-                </div>
-            </div>
-
 
 
             <br/>

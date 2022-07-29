@@ -9,10 +9,14 @@ using Vivastreet.Repository.IRepository;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 using Vivastreet.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Vivastreet_Utility;
 using PagedList;
 
 namespace Vivastreet.Controllers
 {
+    //[Authorize(Roles = WC.AdminRole)]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

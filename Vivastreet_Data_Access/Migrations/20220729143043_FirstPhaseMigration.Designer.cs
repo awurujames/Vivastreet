@@ -12,8 +12,8 @@ using Vivastreet_DataAccess;
 namespace Vivastreet_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220727082408_SecondPhase")]
-    partial class SecondPhase
+    [Migration("20220729143043_FirstPhaseMigration")]
+    partial class FirstPhaseMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -361,4 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Vivastreet/wwwroot/images/productImages
+FodyWeavers.xsd
 *.jpg
+*.jpeg

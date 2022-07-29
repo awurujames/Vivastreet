@@ -88,7 +88,7 @@ namespace Vivastreet.Controllers
             else
             {
                 //edit
-                AdvertVM.Advertisement = _db.Advertisements.Find(id);
+                AdvertVM.Advertisement = _db.Advertisements.Include(x => x.Images).FirstOrDefault(x => x.Id == id);
                 if (AdvertVM == null)
                 {
                     return NotFound();
@@ -111,15 +111,47 @@ namespace Vivastreet.Controllers
                 {
                     //create
                     string upload = webRootPath + WC.ImagePath;
-                    string fileName = Guid.NewGuid().ToString();
-                    string extension = Path.GetExtension(files[0].FileName);
 
-                    using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    if(files.Count == 1)
                     {
-                        files[0].CopyTo(filesStream);
-                    }
+                        string fileName = Guid.NewGuid().ToString();
+                        string extension = Path.GetExtension(files[0].FileName);
 
-                    AdvertVM.Advertisement.Image = fileName + extension;
+                        using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(filesStream);
+                        }
+
+                        AdvertVM.Advertisement.Image = fileName + extension;
+                    }
+                    else
+                    {
+                        var first = true;
+                        foreach (var file in files)
+                        {
+                            
+                            string fileName = Guid.NewGuid().ToString();
+                            string extension = Path.GetExtension(file.FileName);
+
+                            using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                            {
+                                file.CopyTo(filesStream);
+                            }
+
+                            if (first)
+                            {
+                                AdvertVM.Advertisement.Image = fileName + extension;
+                                first = false;
+                            }else
+                            {
+                                var imageUrl = fileName + extension;
+                                AdvertVM.Advertisement.Images.Add(new Image { ImageUrl = imageUrl });
+                            }
+                            
+                        }
+                        
+                    }
+                    
 
                     _db.Advertisements.Add(AdvertVM.Advertisement);
 

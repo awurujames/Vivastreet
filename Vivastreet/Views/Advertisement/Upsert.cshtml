@@ -242,13 +242,13 @@
                 </div>
             </div>
 
-            @*<div class="row mt-2">
+            <div class="row mt-2">
                 <div class="col-12">
                     <label class="col-form-label">Select Multiple Files</label>
                     <input asp-for="Files" class="form-control" multiple/>
                     <span asp-validation-for="Files" class="text-danger"></span>
                 </div>
-            </div>*@
+            </div>
 
 
             <br/>
@@ -322,7 +322,10 @@
             @if (Model.Advertisement.Id != 0)
                 {
                     <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
-                    
+                    @foreach(var item in Model.Advertisement.Images)
+                    {
+                       <img src="@Vivastreet_Utility.WC.ImagePath@item.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb"/> 
+                    }
                 }
 
         </div>

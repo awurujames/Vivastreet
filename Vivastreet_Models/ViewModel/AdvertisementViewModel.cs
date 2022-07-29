@@ -14,6 +14,6 @@ namespace Vivastreet_Models.ViewModel
         public IEnumerable<SelectListItem>? ConditionSelectListItems { get; set; }
         public IEnumerable<SelectListItem>? CitySelectListItems { get; set; }
 
-        
+        public IFormFileCollection Files { get; set; }
     }
 }

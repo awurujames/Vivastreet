@@ -70,7 +70,10 @@ namespace Vivastreet_Models
         public ICollection<Rate>? Rates { get; set; }
         [Display(Name = "Advertisement Type")]
         public string? AdvertisementType { get; set; }
+        public int ImageId { get; set; }
+        [ForeignKey("ImageId")]
+        public ICollection<Image>? Images { get; set; } = new List<Image>();
 
-       
+
     }
 }

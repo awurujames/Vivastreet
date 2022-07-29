@@ -58,14 +58,14 @@
                 </div>
 
                 <div class="row">
-                    <div class=" container-1 col-12 col-md-2 pb-1 ">
+                    <div class=" container-2 col-12 col-md-2 pb-1 ">
                             <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
                     </div>
-                    <div class=" container-1 col-12 col-md-2 pb-2 ">
+                    <div class=" container-2 col-12 col-md-2 pb-2 ">
                             <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
                            
                     </div>
-                        <div class=" container-1 col-12 col-md-2 pb-1 ">
+                        <div class=" container-2 col-12 col-md-2 pb-1 ">
                             <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
                            
                     </div>
@@ -252,6 +252,24 @@
 
 @section Scripts{
     <script>
+$(document).ready(function() {
+    $('.container-2 img').on({
+        mouseover: function() {
+            $(this).css({ 'cursor': 'hand', 'border-Color': 'red' });
+        },
+        mouseout: function() {
+            (this).css({ 'cursor': 'hand', 'border-Color': 'grey' })
+        },
+        click: function() {
+            var imageUrl = $(this).attr('src');
+            $('.container-1').fadeOut(500, function() {
+                $(this).attr('src', imageURL);
+            }).fadeIn(500)
+        }
+    });
+});
+
+
             $(document).ready(function() {
             var phonenumbers = [];
     $(".phonenumber").each(function(i) {

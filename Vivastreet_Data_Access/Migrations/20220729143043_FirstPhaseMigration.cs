@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vivastreet_DataAccess.Migrations
 {
-    public partial class Second_Phase : Migration
+    public partial class FirstPhaseMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

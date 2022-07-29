@@ -9,9 +9,14 @@ using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
-    [Authorize(Roles = WC.AdminRole)]
+    //[Authorize(Roles = WC.AdminRole)]
+    //if (!await _roleManager.RoleExistsAsync(WC.AdminRole)
+    //{
+
+    //}
     public class AdvertisementController : Controller
     {
+        //if (!await _roleManager.RoleExistsAsync(WC.AdminRole))
         private readonly ApplicationDbContext _db;
         private readonly IWebHostEnvironment _webHostEnvironment;   
         public AdvertisementController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)

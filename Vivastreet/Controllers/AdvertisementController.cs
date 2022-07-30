@@ -40,7 +40,7 @@ namespace Vivastreet.Controllers
             return View(objList);
         }
 
-        
+        [Authorize]
         public IActionResult Upsert(int? id)
         {
 
@@ -99,6 +99,7 @@ namespace Vivastreet.Controllers
         }
 
         //Upsert - Post
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(AdvertisementViewModel AdvertVM)

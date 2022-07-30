@@ -12,8 +12,8 @@ using Vivastreet_DataAccess;
 namespace Vivastreet_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220729143043_FirstPhaseMigration")]
-    partial class FirstPhaseMigration
+    [Migration("20220730191350_FirstPhaseMig")]
+    partial class FirstPhaseMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,6 +273,9 @@ namespace Vivastreet_DataAccess.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("InstallationServiceFee")
                         .HasColumnType("nvarchar(max)");
 
@@ -394,6 +397,28 @@ namespace Vivastreet_DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Conditions");
+                });
+
+            modelBuilder.Entity("Vivastreet_Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("Vivastreet_Models.Language", b =>
@@ -639,6 +664,13 @@ namespace Vivastreet_DataAccess.Migrations
                     b.Navigation("Advertisement");
                 });
 
+            modelBuilder.Entity("Vivastreet_Models.Image", b =>
+                {
+                    b.HasOne("Vivastreet_Models.Advertisement", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ImageId");
+                });
+
             modelBuilder.Entity("Vivastreet_Models.Rate", b =>
                 {
                     b.HasOne("Vivastreet_Models.Advertisement", "Advertisement")
@@ -657,6 +689,8 @@ namespace Vivastreet_DataAccess.Migrations
             modelBuilder.Entity("Vivastreet_Models.Advertisement", b =>
                 {
                     b.Navigation("City");
+
+                    b.Navigation("Images");
 
                     b.Navigation("Rates");
                 });

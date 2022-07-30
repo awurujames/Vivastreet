@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vivastreet_DataAccess.Migrations
 {
-    public partial class FirstPhaseMigration : Migration
+    public partial class FirstPhaseMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -282,7 +282,8 @@ namespace Vivastreet_DataAccess.Migrations
                     MaterialId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     RateId = table.Column<int>(type: "int", nullable: false),
-                    AdvertisementType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AdvertisementType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -328,6 +329,25 @@ namespace Vivastreet_DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Citys_Advertisements_CityId",
                         column: x => x.CityId,
+                        principalTable: "Advertisements",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Image",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Image_Advertisements_ImageId",
+                        column: x => x.ImageId,
                         principalTable: "Advertisements",
                         principalColumn: "Id");
                 });
@@ -425,6 +445,11 @@ namespace Vivastreet_DataAccess.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Image_ImageId",
+                table: "Image",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rates_AdvertisementId",
                 table: "Rates",
                 column: "AdvertisementId");
@@ -454,6 +479,9 @@ namespace Vivastreet_DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Citys");
+
+            migrationBuilder.DropTable(
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "Langauges");

@@ -163,7 +163,7 @@ namespace Vivastreet.Controllers
                     //updating
                     var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id);
 
-                    if (files.Count > 0)
+                    if (files.Count == 1)
                     {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();
@@ -183,6 +183,26 @@ namespace Vivastreet.Controllers
 
                         AdvertVM.Advertisement.Image = fileName + extension;
                     }
+
+                    //if (files.Count > 1 )
+                    //{
+                    //    foreach (var file in files)
+                    //    {
+                    //        string fileName = Guid.NewGuid().ToString();
+                    //        string extension = Path.GetExtension(file.FileName);
+                    //    }
+                    //    var oldFile = file;
+
+
+                    //    if (System.IO.File.Exists(oldFile))
+                    //    {
+                    //        System.IO.File.Delete(oldFile);
+                    //    }
+                    //    using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    //    {
+                    //        file.CopyTo(filesStream);
+                    //    }
+                    //}
                     else
                     {
                         AdvertVM.Advertisement.Image = objFromDb.Image;

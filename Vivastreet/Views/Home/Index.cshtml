@@ -1,17 +1,36 @@
-﻿  
+﻿
 @model Vivastreet.ViewModel.HomeViewModel
+
+@using Vivastreet_Models
+
+  
+
+@{
+    ViewData["Title"] = "Index";
+
+    Pager pager = new Pager();
+
+
+    int pageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
 
 <div class="container">
     <div class="container-Add mt-10">
 
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
-            <div class="main-cont row p-3">
+            <div class="main-cont col-mg-12 row p-3">
 
 
                 <div class="premier-banner col-2 border p-3">
 
-                    <div class="premier-bannerj width=50% btn btn border  p-3">
+                    <div class="premier-bannerj btn btn border  p-3">
 
                         <div class="col">
                             <label asp-for="Advertisement.Category"></label>
@@ -25,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="premier-banner col-2 border p-3" style=" background-color :lightgray">
+                <div class="premier-banner col-2 border p-3">
 
                     <div class=" premier-bannerj btn btn border p-3">
 
@@ -48,7 +67,7 @@
                     <div class=" premier-bannerj border p-3  row">
 
                         <div class="col-6">
-                            <div class="col">
+                            <div class="col width="50%"">
                                 <label asp-for="Advertisement.Condition">Rate</label>
                             </div>
                             <div class="col">
@@ -146,7 +165,7 @@
                         <div class="SearchBtn w-50% btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
                         <input type="submit" id="submitId" value="Search>>" />
                       </div>
-            </div>
+                    </div>
 
                 </div>
 
@@ -171,12 +190,29 @@
         <div class="row">
             @foreach (var item in Model.Advertisements)
             {
+                @*if (item.AdvertisementType == '')
+                {
+                    
+                }*@
                 <partial name="_IndividualAdvertCard" model="item" />
                 //display all product
             }
         </div>
     </div>
 
+   @*<div class="container">
+       @if(pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-center">
+                @for (var pge = pager.StartPage; pge <= pager.EndPage ; pge++)
+                {
+                    <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+                        <a class="page-link" asp-controller="Advertisement" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>*@
 
     @section Scripts{
     <script>

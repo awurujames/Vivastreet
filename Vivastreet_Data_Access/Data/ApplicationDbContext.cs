@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Vivastreet.Models;
 using Vivastreet_Models;
+using Vivastreet_Models.ViewModel;
 
 namespace Vivastreet_DataAccess
 {
@@ -30,6 +31,7 @@ namespace Vivastreet_DataAccess
         public DbSet<ServiceOffered>? ServiceOffereds { get; set; }
         public DbSet<City>? Citys { get; set; }
         public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
+        //public DbSet<Pager>? Pagers { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{

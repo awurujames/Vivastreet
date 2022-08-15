@@ -45,8 +45,11 @@ namespace Vivastreet.Controllers
             _ageRepo = ageRepo;
         }
 
-        public IActionResult Index(HomeViewModel model)
+        public IActionResult Index(HomeViewModel model, int? ageNumber, int pg = 1)
         {
+            const int pageSize = 6;
+            if(pg < 1)
+                pg = 1;
             HomeViewModel homeVM = new HomeViewModel()
             {
                 CategorySelectListItems = _catRepo.GetAll().Select(i => new SelectListItem
@@ -146,7 +149,22 @@ namespace Vivastreet.Controllers
 
             homeVM.Advertisements = filtered.ToList();
             homeVM.Advertisementss = filtered.ToList().ToPagedList(homeVM.pageNumber ?? 1, 3);
-            return View(homeVM);
+
+            int recsCount = homeVM.Advertisementss.Count();
+
+            var pagerr = new Pager(recsCount, pg, pageSize);
+
+            int recSkip = (pg - 1) * pageSize;
+
+            var data = homeVM.Advertisementss.Skip(recSkip).Take(pagerr.PageSize).ToList();
+
+            this.ViewBag.Pager = pagerr;
+
+            return View(data);
+            //return View(PaginatedList<Advertisement>.Create(homeVM), PageNumber ?? 1, pageSize );
+            //return View(PaginatedList<HomeViewModel>.Create(_db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
+            //  .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).AsQueryable()), pageNumber ?? 1, pageSize);
+
         }
 
 
@@ -184,7 +202,7 @@ namespace Vivastreet.Controllers
         //            Text = i.Name
 
         //        }),
-                
+
         //    };
         //    return(IActionResult)View(homeVM);
 
@@ -198,14 +216,13 @@ namespace Vivastreet.Controllers
             DetailsVM detailsVM = new DetailsVM()
             {
                 Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault()
-               // Advertisementz = _advertRepo.FirstOrDefault(u => u.Id == id, includeProperties: "Category, Material, Condition, SelectAge, Rate"),
 
             };
-            return(IActionResult)View(detailsVM);   
-            
+            return (IActionResult)View(detailsVM);
+
         }
-        
-        
+
+
 
     }
 }

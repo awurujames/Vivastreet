@@ -12,8 +12,8 @@ using Vivastreet_DataAccess;
 namespace Vivastreet_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220730191350_FirstPhaseMig")]
-    partial class FirstPhaseMig
+    [Migration("20220811020055_paginationClassAdded")]
+    partial class paginationClassAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

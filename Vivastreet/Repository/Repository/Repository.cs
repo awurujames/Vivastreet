@@ -2,7 +2,6 @@
 using System.Linq.Expressions;
 using Vivastreet_DataAccess;
 using Vivastreet.Repository.IRepository;
-using Vivastreet_DataAccess;
 
 namespace Vivastreet.Repository.Repository
 {

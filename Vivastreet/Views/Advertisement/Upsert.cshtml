@@ -339,6 +339,25 @@
 
     <script>
 
+//        $('.summernote').summernote({
+//    height: 250,
+//    callbacks: {
+//        onChange: function (contents) {
+//            if ($('.summernote').summernote('isEmpty')) {
+//                $(".add .panel-body").html('');
+//            } else {
+//                $(".add .panel-body").val(contents);
+//            }
+//             $('.summernote_add').val(
+//                 $('.summernote_add').summernote('isEmpty')
+//                     ? null
+//                     : contents
+//             );
+//            summernoteValidatorAdd.element($('.summernote'));
+//        }
+//    }
+//});
+
 
         //$("#inlineCheckbox3").change(function(){
 
@@ -355,6 +374,15 @@
                 height:200
             });
             });
+
+            
+
+
+        
+    }
+});
+
+
         function validateInput() {
             if (document.getElementById('uploadBox').value == "") {
                  Swal.fire(

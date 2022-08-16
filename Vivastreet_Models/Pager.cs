@@ -8,25 +8,25 @@ namespace Vivastreet_Models
 {
     public class Pager
     {
-        public int TotalItems { get; private set; }
-        public int CurrentPage { get; private set; }
-        public int PageSize { get; private set; }
-        public int TotalPages { get; private set; }
-        public int StartPage { get; private set; }
-        public int EndPage { get; private set; }
+        public int TotalItems { get; private set; } //Gives total number of records*****
+        public int CurrentPage { get; private set; } // gives the active page of the pager bar
+        public int PageSize { get; private set; } // gives the number of recoed to be displayed in a page****
+        public int TotalPages { get; private set; } // Gives the total number of pages in the pager bar
+        public int StartPage { get; private set; } // Gives the (current) start page in the pager bar
+        public int EndPage { get; private set; } // Gives the (current) end page in the pager bar
 
         public Pager()
         {
 
         }
 
-        public Pager(int totalItems, int page, int pageSige = 10)
+        public Pager(int totalItems, int page, int pageSize = 4)
         {
-            int totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSige);
+            int totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             int currentPage = page;
 
-            int startPage = CurrentPage - 5;
-            int endPage = CurrentPage + 4;
+            int startPage = CurrentPage - 1;
+            int endPage = CurrentPage + 1;
 
             if (startPage <= 0)
             {
@@ -37,15 +37,15 @@ namespace Vivastreet_Models
             if (endPage > TotalPages)
             {
                 endPage = totalPages;
-                if (endPage > 10)
+                if (endPage > 4)
                 {
-                    startPage = endPage - 9;
+                    startPage = endPage - 3;
                 }
             }
 
             TotalPages = totalPages;
             CurrentPage = currentPage;
-            PageSize = pageSige;
+            PageSize = pageSize;
             TotalPages = totalPages;
             StartPage = startPage;
             EndPage = endPage;

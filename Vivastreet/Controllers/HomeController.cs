@@ -15,12 +15,12 @@ using PagedList;
 
 namespace Vivastreet.Controllers
 {
-    //[Authorize(Roles = WC.AdminRole)]
+    // [Authorize(Roles = WC.AdminRole)]
 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-       private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
         private readonly IAdvertisementRepository _advertRepo;
         private readonly ICategoryRepository _catRepo;
         private readonly IConditionRepository _ConRepo;
@@ -29,7 +29,7 @@ namespace Vivastreet.Controllers
         private readonly IRateRepository _rateRepo;
         private readonly IAgeRepository _ageRepo;
 
-        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo, 
+        public HomeController(ILogger<HomeController> logger, IAdvertisementRepository advertRepo,
             ICategoryRepository catRepo, IConditionRepository ConRepo, ICityRepository cityRepo,
             IMaterialRepository matRepo, IRateRepository rateRepo, IAgeRepository ageRepo, ApplicationDbContext db)
         {
@@ -45,11 +45,12 @@ namespace Vivastreet.Controllers
             _ageRepo = ageRepo;
         }
 
-        public IActionResult Index(HomeViewModel model, int? ageNumber, int pg = 1)
+        public IActionResult Index(HomeViewModel model, int pg = 1)
         {
             const int pageSize = 6;
-            if(pg < 1)
+            if (pg < 1)
                 pg = 1;
+
             HomeViewModel homeVM = new HomeViewModel()
             {
                 CategorySelectListItems = _catRepo.GetAll().Select(i => new SelectListItem
@@ -105,7 +106,7 @@ namespace Vivastreet.Controllers
             var agemaxId = model.SelectAgeMaxId;
             var cityId = model.CityId;
 
-            if(catId.HasValue)
+            if (catId.HasValue)
             {
                 filtered = filtered.Where(i => i.CategoryId == catId.Value);
             }
@@ -130,7 +131,7 @@ namespace Vivastreet.Controllers
                 {
                     filtered = filtered.Where(i => i.RateId == rateminId.Value);
                 }
-                
+
             }
 
             if (ageminId.HasValue)
@@ -150,21 +151,19 @@ namespace Vivastreet.Controllers
             homeVM.Advertisements = filtered.ToList();
             homeVM.Advertisementss = filtered.ToList().ToPagedList(homeVM.pageNumber ?? 1, 3);
 
-            int recsCount = homeVM.Advertisementss.Count();
+            int recsCount = homeVM.Advertisements.Count();
 
             var pagerr = new Pager(recsCount, pg, pageSize);
 
             int recSkip = (pg - 1) * pageSize;
 
-            var data = homeVM.Advertisementss.Skip(recSkip).Take(pagerr.PageSize).ToList();
+            var data = homeVM.Advertisements.Skip(recSkip).Take(pagerr.PageSize).ToList();
 
+            homeVM.Advertisements = data;
+            var ss = homeVM.Advertisements.Count();
             this.ViewBag.Pager = pagerr;
 
-            return View(data);
-            //return View(PaginatedList<Advertisement>.Create(homeVM), PageNumber ?? 1, pageSize );
-            //return View(PaginatedList<HomeViewModel>.Create(_db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
-            //  .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).AsQueryable()), pageNumber ?? 1, pageSize);
-
+            return View(homeVM);
         }
 
 
@@ -215,7 +214,8 @@ namespace Vivastreet.Controllers
         {
             DetailsVM detailsVM = new DetailsVM()
             {
-                Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault()
+                Advertisementz = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition).Include(u => u.SelectAge).Include(u => u.Rates).Where(u => u.Id == id).FirstOrDefault(),
+                // Advertisementz = _advertRepo.FirstOrDefault(u => u.Id == id, includeProperties: "Category, Material, Condition, SelectAge, Rate"),
 
             };
             return (IActionResult)View(detailsVM);

@@ -1,6 +1,5 @@
-﻿
+﻿  
 @model Vivastreet.ViewModel.HomeViewModel
-
 @using Vivastreet_Models
 
   
@@ -20,17 +19,17 @@
     }
 }
 
-<div class="container">
+<div class="container mt-2">
     <div class="container-Add mt-10">
 
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
-            <div class="main-cont col-mg-12 row p-3">
+            @*<div class="main-cont row p-3">
 
 
                 <div class="premier-banner col-2 border p-3">
 
-                    <div class="premier-bannerj btn btn border  p-3">
+                    <div class="premier-bannerj width=50% btn btn border  p-3">
 
                         <div class="col">
                             <label asp-for="Advertisement.Category"></label>
@@ -44,7 +43,7 @@
                     </div>
                 </div>
 
-                <div class="premier-banner col-2 border p-3">
+                <div class="premier-banner col-2 border p-3" style=" background-color :lightgray">
 
                     <div class=" premier-bannerj btn btn border p-3">
 
@@ -67,7 +66,7 @@
                     <div class=" premier-bannerj border p-3  row">
 
                         <div class="col-6">
-                            <div class="col width="50%"">
+                            <div class="col">
                                 <label asp-for="Advertisement.Condition">Rate</label>
                             </div>
                             <div class="col">
@@ -137,7 +136,7 @@
                                 @{
                                     foreach (var item in Model.ConditionSelectListItems)
                                     {
-                                        <option value="@item.Value">@item.Text</option>
+                                            <option value="@item.Value">@item.Text</option>
                                     }
                                 }
 
@@ -169,8 +168,91 @@
 
                 </div>
 
-            </div>
-           
+            </div>*@
+
+
+                 <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <select asp-for="CategoryId" asp-items="@Model.CategorySelectListItems" class="form-control">
+                        <option disabled selected>-Category-</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                        <select asp-for="CityId" asp-items="@Model.MaterialSelectListItems" class="form-control">
+                            <option disabled selected>-Material-</option>
+                        </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                      <select asp-for="RateMinId" asp-items="@Model.RateSelectListItems" class="form-control">
+                        <option disabled selected>Min Rate</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                     <select asp-for="RateMaxId" asp-items="@Model.RateSelectListItems" class="form-control">
+                        <option disabled selected>Max Rate</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                     <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                        <option disabled selected>Min Age</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                     <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                        <option disabled selected>Max Age</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                     <select asp-for="SelectAgeMinId" asp-items="@Model.CitySelectListItems" class="form-control">
+                        <option disabled selected>-City-</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <div class="col">
+                     <select asp-for="SelectAgeMinId" asp-items="@Model.ConditionSelectListItems" class="form-control">
+                        <option disabled selected>Condition</option>
+                    </select>
+                  </button>
+  
+                </div>
+
+                    <div class="SearchBtn btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
+                         <input type="submit" id="submitId" value="Search>>" />
+                    </div>
         }
         <div class="container-Add mt-10">
             <div class="main-cont row">
@@ -190,29 +272,49 @@
         <div class="row">
             @foreach (var item in Model.Advertisements)
             {
-                @*if (item.AdvertisementType == '')
-                {
-                    
-                }*@
                 <partial name="_IndividualAdvertCard" model="item" />
                 //display all product
             }
         </div>
     </div>
-
-   @*<div class="container">
+    <div class="container">
        @if(pager.TotalPages > 0)
         {
             <ul class="pagination justify-content-center">
+                @if(pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="1">First</a>
+                    </li>
+                    <li>
+                        <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg=@(pager.CurrentPage - 1)>Previous</a>
+                    </li>
+                }
+
                 @for (var pge = pager.StartPage; pge <= pager.EndPage ; pge++)
                 {
                     <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
-                        <a class="page-link" asp-controller="Advertisement" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                        <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@pge">@pge</a>
                     </li>
+                }
+                @if(pager.CurrentPage < pager.TotalPages)
+                {
+                <li class="page-item">
+                    <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+                </li>
+        
+                <li>
+                    <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-pg="@(pager.TotalPages )">Last</a>
+                </li>
                 }
             </ul>
         }
-    </div>*@
+
+        
+
+    </div>
+
+    
 
     @section Scripts{
     <script>

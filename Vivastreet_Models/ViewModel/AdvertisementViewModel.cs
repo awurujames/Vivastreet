@@ -8,6 +8,7 @@ namespace Vivastreet_Models.ViewModel
     public class AdvertisementViewModel 
     {
         public Advertisement? Advertisement { get; set; }
+        public Image? ImageCol { get; set; }
         public IEnumerable<SelectListItem>? CategorySelectListItems { get; set; } 
         public IEnumerable<SelectListItem>? MaterialSelectListItems { get; set; }
         public IEnumerable<SelectListItem>? AgeSelectListItem { get; set; }

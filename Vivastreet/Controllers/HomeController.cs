@@ -218,8 +218,10 @@ namespace Vivastreet.Controllers
                 // Advertisementz = _advertRepo.FirstOrDefault(u => u.Id == id, includeProperties: "Category, Material, Condition, SelectAge, Rate"),
 
             };
-            return (IActionResult)View(detailsVM);
 
+            var advert = _db.Advertisements.FirstOrDefault(x => x.Id == id);
+            return (IActionResult)View(detailsVM);
+            
         }
 
 

@@ -3,6 +3,8 @@
 
 @{
     var title = "Create Advert";
+    var images = Model.Advertisement.Image.Split('|').ToList();
+    var firstImage = Vivastreet_Utility.WC.ImagePath + images.FirstOrDefault().ToString(); 
 }
 
 
@@ -318,14 +320,16 @@
             <div class="row">
 
             </div>
-            @if (Model.Advertisement.Id != 0)
+            @*@if (firstImage.Any())*@
                 {
-                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
-                    @foreach(var item in Model.Advertisement.Images)
+                    @*<img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement" width="100%" style="border-radius:5px; border:1px solid #bbb"/>*@
+
+                    <img src="@firstImage" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
+                   @* @foreach(var item in Model.Advertisement.Images)
                     {
                        <img src="@Vivastreet_Utility.WC.ImagePath@item.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb"/> 
-                    }
-                }
+                    }*@
+                @*}*@
 
         </div>
      </div>

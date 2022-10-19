@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using Vivastreet_DataAccess;
 using Vivastreet_Models;
 using Vivastreet_Models.ViewModel;
@@ -113,46 +114,66 @@ namespace Vivastreet.Controllers
                     //create
                     string upload = webRootPath + WC.ImagePath;
 
-                    if(files.Count == 1)
+                    var imageUrls = new List<string>();
+                    foreach (var file in files)
                     {
                         string fileName = Guid.NewGuid().ToString();
-                        string extension = Path.GetExtension(files[0].FileName);
+                        string extension = Path.GetExtension(file.FileName);
 
                         using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
                         {
-                            files[0].CopyTo(filesStream);
+                            file.CopyTo(filesStream);
                         }
 
-                        AdvertVM.Advertisement.Image = fileName + extension;
+                        fileName = upload + fileName + extension;
+                        imageUrls.Add(fileName);
+                       
                     }
-                    else
-                    {
-                        var first = true;
-                        foreach (var file in files)
-                        {
-                            
-                            string fileName = Guid.NewGuid().ToString();
-                            string extension = Path.GetExtension(file.FileName);
+                    if(imageUrls.Count > 1) AdvertVM.Advertisement.Image = string.Join('|', imageUrls);
 
-                            using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
-                            {
-                                file.CopyTo(filesStream);
-                            }
+                    #region [Old flow]
+                    //if (files.Count == 1)
+                    //{
+                    //    string fileName = Guid.NewGuid().ToString();
+                    //    string extension = Path.GetExtension(files[0].FileName);
 
-                            if (first)
-                            {
-                                AdvertVM.Advertisement.Image = fileName + extension;
-                                first = false;
-                            }else
-                            {
-                                var imageUrl = fileName + extension;
-                                AdvertVM.Advertisement.Images.Add(new Image { ImageUrl = imageUrl });
-                            }
-                            
-                        }
-                        
-                    }
-                    
+                    //    using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    //    {
+                    //        files[0].CopyTo(filesStream);
+                    //    }
+
+                    //    AdvertVM.Advertisement.Image = fileName + extension;
+                    //}
+                    //else
+                    //{
+                    //    var first = true;
+                    //    foreach (var file in files)
+                    //    {
+
+                    //        string fileName = Guid.NewGuid().ToString();
+                    //        string extension = Path.GetExtension(file.FileName);
+
+                    //        using (var filesStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    //        {
+                    //            file.CopyTo(filesStream);
+                    //        }
+
+                    //        if (first)
+                    //        {
+                    //            AdvertVM.Advertisement.Image = fileName + extension;
+                    //            first = false;
+                    //        }
+                    //        else
+                    //        {
+                    //            var imageUrl = fileName + extension;
+                    //            AdvertVM.Advertisement.Images.Add(new Image { ImageUrl = imageUrl });
+                    //        }
+
+                    //    }
+
+                    //}
+                    #endregion
+
 
                     _db.Advertisements.Add(AdvertVM.Advertisement);
 
@@ -163,7 +184,7 @@ namespace Vivastreet.Controllers
                     //updating
                     var objFromDb = _db.Advertisements.AsNoTracking().FirstOrDefault(u => u.Id == AdvertVM.Advertisement.Id);
 
-                    if (files.Count == 1)
+                    if (files.Count >= 1)
                     {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();
@@ -181,7 +202,7 @@ namespace Vivastreet.Controllers
                             files[0].CopyTo(fileStream);
                         }
 
-                        AdvertVM.Advertisement.Image = fileName + extension;
+                       AdvertVM.Advertisement.Image = fileName + extension;
                     }
 
                     //if (files.Count > 1 )

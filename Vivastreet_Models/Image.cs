@@ -10,5 +10,6 @@ namespace Vivastreet_Models
     {
         public int Id { get; set; }
         public string ImageUrl { get; set; }
+
     }
 }

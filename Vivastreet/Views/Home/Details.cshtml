@@ -1,5 +1,8 @@
 ﻿@using Vivastreet_Utility
 @model Vivastreet_Models.ViewModel.DetailsVM
+@{
+       var images = Model.Advertisementz.Image.Split('|').ToList();
+}
 
 <div class="">
     <form method="post">
@@ -27,12 +30,13 @@
                                     <p>Dont forget to mention Vivastreet when you get in touch</p>
                                     <div class=" row-6">
                                         <div class="phonenumber col-6 m-4">
-                                            <input id="numberbtn" type="button" class="btn btn-success w-70" value="See Phone Number " onclick="shownumber()"/>
-                                            <label>@Model.Advertisementz.PhoneNumber</label>
+                                            <label>Phone</label><br/>
+                                            <input id="numberbtn" type="button" class="btn btn-success w-70" value="@Model.Advertisementz.PhoneNumber" onclick="shownumber()"/>
                                         </div>
 
                                         <div class="phonenumber col-6 m-4">
-                                            <input type="submit" class="btn btn-success w-70" value="See E-mail Address" />
+                                            <label>Email</label><br/>
+                                            <input type="submit" class="btn btn-success w-70" value="@Model.Advertisementz.EmailAddress" />
                                         </div>
 
                                     </div>
@@ -59,17 +63,26 @@
                 </div>
 
                 <div class="row">
-                    <div class=" container-2 col-12 col-md-2 pb-1 ">
+                @if (images.Any())
+                {
+
+@*                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisementz.Image" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
+*@                    @foreach(var item in images)
+                    {
+                       <img src="@Vivastreet_Utility.WC.ImagePath@item" width="100%" style="border-radius:5px; border:1px solid #bbb"/> 
+                    }
+                }
+                    <@*div class=" container-2 col-12 col-md-2 pb-1 ">
                         <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
                     </div>
                     <div class=" container-2 col-12 col-md-2 pb-2 ">
                         <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
 
-                    </div>
-                    <div class=" container-2 col-12 col-md-2 pb-1 ">
-                        <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
+                    </div>*@
+                    @*<div class=" container-2 col-12 col-md-2 pb-1 ">*@
+                  @*      <img src="@WC.ImagePath@Model.Advertisementz.Image" width="100%" class="rounded" />
 
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -267,7 +280,7 @@
                 var imageUrl = $(this).attr('src');
                 $('.container-1').fadeOut(500, function() {
                     $(this).attr('src', imageUrl);
-                }).fadeIn(500)
+                }).fadeIn(100)
             }
         });
     });

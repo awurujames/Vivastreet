@@ -359,3 +359,13 @@ body {
 .badge {
     color: orange;
 }
+.IndividualCart {
+    width: calc(100% / 3 - 15px);
+    margin: 0 5px 5px 0;
+    background: #efefef;
+    float: left;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+}

@@ -6,7 +6,7 @@ using Vivastreet_Utility;
 
 namespace Vivastreet.Controllers
 {
-    [Authorize(Roles = WC.AdminRole)]
+    //[Authorize(Roles = WC.AdminRole)]
 
     public class SelectAgeController : Controller
     {

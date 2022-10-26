@@ -95,8 +95,19 @@ namespace Vivastreet.Controllers
                 }),
             };
 
+
             var filtered = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
-                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).AsQueryable();
+                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates)
+                .Where(x => x.AdvertisementType == AdvertType.ClassicAdvert.ToString()).AsQueryable();
+
+            homeVM.AdvertOfTheWeek = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
+                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates).
+                Where(x => x.AdvertisementType == AdvertType.AdvertOfTheWeek.ToString()).OrderByDescending(x => x.DateCreated).LastOrDefault();   
+
+            homeVM.PremierBanner = _db.Advertisements.Include(u => u.Category).Include(u => u.Material).Include(u => u.Condition)
+                .Include(u => u.SelectAge).Include(u => u.City).Include(u => u.Rates)
+                .Where(x => x.AdvertisementType == AdvertType.PremierBanner.ToString()).OrderByDescending(x => x.DateCreated).LastOrDefault();
+
             //Filter criteria
             var catId = model.CategoryId;
             var conId = model.ConditionId;

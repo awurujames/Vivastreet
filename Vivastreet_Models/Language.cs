@@ -2,7 +2,7 @@
 
 namespace Vivastreet_Models
 {
-    public class Language
+    public class Language : BaseDomain
     {
         public int Id { get; set; }
         public bool English { get; set; }

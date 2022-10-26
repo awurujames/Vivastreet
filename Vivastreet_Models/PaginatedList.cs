@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vivastreet_Models
 {
-    public class PaginatedList<T> : List<T> where T : class
+    public class PaginatedList<T> : List<T> where T : class 
     {
         public int PageIndex { get; set; }
         public int TotalPage { get; set; }

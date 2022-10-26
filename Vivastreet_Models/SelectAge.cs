@@ -2,7 +2,7 @@
 
 namespace Vivastreet_Models
 {
-    public class SelectAge
+    public class SelectAge : BaseDomain
     {
         public int Id { get; set; }
         public int Age { get; set; }

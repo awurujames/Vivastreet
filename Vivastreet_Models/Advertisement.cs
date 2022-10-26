@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vivastreet_Models
 {
-    public class Advertisement  
+    public class Advertisement: BaseDomain
     {
         
         public int Id { get; set; }
         [Required]
         [MaxLength(30)]
         public string? Title { get; set; }
+        
         [Display(Name = "Post Code")]
         public string? PostCode { get; set; }
         [MaxLength(300)]
@@ -75,5 +76,12 @@ namespace Vivastreet_Models
         public ICollection<Image>? Images { get; set; } = new List<Image>();
 
 
+    }
+
+    public enum AdvertType
+    {
+        PremierBanner,
+        AdvertOfTheWeek,
+        ClassicAdvert
     }
 }

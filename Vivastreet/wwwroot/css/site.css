@@ -359,7 +359,30 @@ body {
 .badge {
     color: orange;
 }
-.IndividualCart {
+.IndividualCartPremierBanner {
+    width: 100%;
+    margin: 0 5px 5px 0;
+    background: #efefef;
+    float: left;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+}
+
+.IndividualCartAdvertOfTheWeek {
+    width: 100%;
+    height: 100%;
+    margin: 0 5px 5px 0;
+    background: #efefef;
+    float: left;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+}
+
+.IndividualCartClassicAdvert {
     width: calc(100% / 3 - 15px);
     margin: 0 5px 5px 0;
     background: #efefef;
@@ -368,4 +391,8 @@ body {
     display: -ms-flexbox;
     display: flex;
     padding: 5px;
+}
+
+.PremierBannerCss {
+    width: 100%;
 }

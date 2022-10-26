@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Vivastreet_Models
 {
-    public class Image : BaseDomain
+    public class BaseDomain
     {
-        public int Id { get; set; }
-        public string ImageUrl { get; set; }
 
+        [Display(Name = "Date Created")]
+        public DateTime DateCreated { get; set; }
     }
 }

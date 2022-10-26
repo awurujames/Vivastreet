@@ -2,7 +2,7 @@
 
 namespace Vivastreet_Models
 {
-    public class City
+    public class City : BaseDomain
     {
         public int Id { get; set; }
         [Display(Name = "City Name")]

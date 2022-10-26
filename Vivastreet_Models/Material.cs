@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vivastreet_Models
 {
-    public class Material
+    public class Material : BaseDomain
     {
         public int Id { get; set; }
         [Required] 

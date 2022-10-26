@@ -15,7 +15,10 @@ namespace Vivastreet.ViewModel
         public IEnumerable<SelectListItem>? ConditionSelectListItems { get; set; }
         public IEnumerable<SelectListItem>? CitySelectListItems { get; set; }
         public IEnumerable<SelectListItem>? RateSelectListItems { get; set; }
-        
+
+        public Advertisement? PremierBanner { get; set; }
+        public Advertisement? AdvertOfTheWeek { get; set; }
+
 
 
         //public IEnumerable<Category>? Categories { get; set; }
@@ -25,6 +28,8 @@ namespace Vivastreet.ViewModel
         //public IEnumerable<SelectAge>? SelectAges { get; set; }
         //public IEnumerable<Condition>? Conditions { get; set; }
         //public IEnumerable<ServiceOffered>? ServiceOffered { get; set; }
+
+
         public Advertisement? Advertisement { get; set; }
         public int? SelectAgeMinId { get; set; }
         public int? SelectAgeMaxId { get; set; }

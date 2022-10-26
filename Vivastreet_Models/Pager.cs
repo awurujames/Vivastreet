@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vivastreet_Models
 {
-    public class Pager
+    public class Pager : BaseDomain
     {
         public int TotalItems { get; private set; } //Gives total number of records*****
         public int CurrentPage { get; private set; } // gives the active page of the pager bar

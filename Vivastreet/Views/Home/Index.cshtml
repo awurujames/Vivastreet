@@ -7,6 +7,8 @@
 
     Pager pager = new Pager();
 
+    //var premierBanner = Model.Advertisements?.Where(x => x.AdvertisementType == AdvertType.PremierBanner.ToString()).AsEnumerable();
+    //var addOfTheWeek = Model.Advertisements?.Where(x => x.AdvertisementType == AdvertType.AdvertOfTheWeek.ToString()).AsEnumerable().LastOrDefault();
 
     int pageNo = 0;
 
@@ -184,6 +186,7 @@
                         <select asp-for="CityId" asp-items="@Model.MaterialSelectListItems" class="form-control">
                             <option disabled selected>-Material-</option>
                         </select>
+                        </div>
                   </button>
   
                 </div>
@@ -194,6 +197,7 @@
                       <select asp-for="RateMinId" asp-items="@Model.RateSelectListItems" class="form-control">
                         <option disabled selected>Min Rate</option>
                     </select>
+                    </div>
                   </button>
   
                 </div>
@@ -204,6 +208,7 @@
                      <select asp-for="RateMaxId" asp-items="@Model.RateSelectListItems" class="form-control">
                         <option disabled selected>Max Rate</option>
                     </select>
+                    </div>
                   </button>
   
                 </div>
@@ -214,6 +219,7 @@
                      <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
                         <option disabled selected>Min Age</option>
                     </select>
+                    </div>
                   </button>
   
                 </div>
@@ -221,9 +227,10 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                    <div class="col">
-                     <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
-                        <option disabled selected>Max Age</option>
-                    </select>
+                         <select asp-for="SelectAgeMinId" asp-items="@Model.AgeSelectListItem" class="form-control">
+                            <option disabled selected>Max Age</option>
+                        </select>
+                    </div>
                   </button>
   
                 </div>
@@ -248,19 +255,30 @@
   
                 </div>
 
-                    <div class="SearchBtn btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse">
+                    <div class="SearchBtn btn btn-danger border p-3 d-sm-inline-flex flex-sm-row-reverse"> 
                          <input type="submit" id="submitId" value="Search>>" />
                     </div>
         }
         <div class="container-Add mt-10">
             <div class="main-cont row">
 
-                <div class="premier-banner3 col-6 border p-3">
-                    <h3>Premier Banner</h3>
+                <div class="premier-banner3 col-7 border p-3">
+                     <div class="row">
+                        @if(Model.PremierBanner != null)
+                        {
+                            <partial name="_IndividualAdvertCard" model="Model.PremierBanner"/>
+                                //display only advert relating to premier banner
+                        }
+
+                    </div>
                 </div>
 
-                <div class="premier-banner3 col-6 border p-3">
-                    <h3>Ad Of The Week</h3>
+                <div class="premier-banner3 col-5 border p-3">
+                  @if(Model.AdvertOfTheWeek != null)
+                        {
+                            <partial name="_IndividualAdvertCard" model="Model.AdvertOfTheWeek"/>
+                                //display only advert relating to premier banner
+                        }
                 </div>
 
             </div>
@@ -309,7 +327,6 @@
         }
 
         
-
     </div>
 
     

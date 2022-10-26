@@ -1,11 +1,12 @@
 ﻿@using Vivastreet_Models
 @model Vivastreet_Models.ViewModel.AdvertisementViewModel
-
 @{
     var title = "Create Advert";
-    var images = Model.Advertisement.Image.Split('|').ToList();
-    var firstImage = Vivastreet_Utility.WC.ImagePath + images.FirstOrDefault().ToString(); 
+    //var images = Model.Advertisement.Image.Split('|').ToList();
+   // var firstImage = Vivastreet_Utility.WC.ImagePath + images.FirstOrDefault().ToString(); 
+
 }
+
 
 
 <form method="post" enctype="multipart/form-data">
@@ -317,19 +318,22 @@
 
         <div class="col-4">
             @* Keep this empty *@
-            <div class="row">
-
-            </div>
-            @*@if (firstImage.Any())*@
+            @if (Model.Advertisement.Id != 0)
                 {
-                    @*<img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement" width="100%" style="border-radius:5px; border:1px solid #bbb"/>*@
+                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement.Image" class="w-100" style="border-radius:5px; border:1px solid #bbb"/>
+                    
+                }
+
+            @*@if (firstImage.Any())
+                {
+                    <img src="@Vivastreet_Utility.WC.ImagePath@Model.Advertisement" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
 
                     <img src="@firstImage" width="100%" style="border-radius:5px; border:1px solid #bbb"/>
-                   @* @foreach(var item in Model.Advertisement.Images)
+                   @foreach(var item in Model.Advertisement.Images)
                     {
                        <img src="@Vivastreet_Utility.WC.ImagePath@item.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb"/> 
-                    }*@
-                @*}*@
+                    }
+                }*@
 
         </div>
      </div>

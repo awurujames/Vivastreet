@@ -2,7 +2,7 @@
 
 namespace Vivastreet_Models
 {
-    public class ServiceOffered
+    public class ServiceOffered : BaseDomain
     {
         public int Id { get; set; }
         public bool SelectAll { get; set; }

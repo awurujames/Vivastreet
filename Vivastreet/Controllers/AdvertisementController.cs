@@ -125,8 +125,10 @@ namespace Vivastreet.Controllers
                             file.CopyTo(filesStream);
                         }
 
+                        AdvertVM.Advertisement.Image = fileName + extension;
+
                         fileName = upload + fileName + extension;
-                        imageUrls.Add(fileName);
+                       imageUrls.Add(fileName);
                        
                     }
                     if(imageUrls.Count > 1) AdvertVM.Advertisement.Image = string.Join('|', imageUrls);
@@ -295,6 +297,7 @@ namespace Vivastreet.Controllers
             }
 
             string upload = _webHostEnvironment.WebRootPath + WC.ImagePath;
+
             var oldFile = Path.Combine(upload, obj.Image);
 
             if (System.IO.File.Exists(oldFile))
